@@ -58,12 +58,6 @@ Application web de gestion d'un centre de formation. Le projet contient une inte
 
 ## Installation
 
-### 1. Cloner le projet
-
-```bash
-git clone https://github.com/Yasminesoussi/Plateforme-de-gestion-formations.git
-cd Plateforme-de-gestion-formations
-```
 
 ### 2. Installer le backend
 
@@ -72,14 +66,6 @@ cd backend
 npm install
 ```
 
-Créer un fichier `.env` dans le dossier `backend` :
-
-```env
-MONGODB_URI=votre_uri_mongodb
-ACCESS_TOKEN_SECRET=votre_secret_jwt
-USER_EMAIL=votre_email
-USER_PASSWORD=votre_mot_de_passe_application
-```
 
 Lancer le backend :
 
@@ -108,46 +94,6 @@ L'application frontend démarre sur :
 ```text
 http://localhost:4200
 ```
-
-## Variables d'environnement
-
-Le fichier `.env` ne doit jamais être envoyé sur GitHub. Il contient les informations sensibles du projet.
-
-Exemple de variables nécessaires :
-
-| Variable | Description |
-| --- | --- |
-| `MONGODB_URI` | Lien de connexion MongoDB |
-| `ACCESS_TOKEN_SECRET` | Clé secrète utilisée pour les tokens JWT |
-| `USER_EMAIL` | Adresse email utilisée pour l'envoi des emails |
-| `USER_PASSWORD` | Mot de passe d'application email |
-
-## Scripts utiles
-
-### Backend
-
-```bash
-npm start
-```
-
-### Frontend
-
-```bash
-npm start
-npm run build
-npm test
-```
-
-## Sécurité
-
-Les fichiers suivants ne doivent pas être ajoutés au dépôt Git :
-
-- `backend/.env`
-- `backend/node_modules/`
-- `backend/uploads/`
-- `backend/routes/keys/`
-
-Ces fichiers sont ignorés avec `.gitignore`.
 
 ## Auteur
 
