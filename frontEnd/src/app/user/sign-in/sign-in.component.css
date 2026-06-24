@@ -1,0 +1,167 @@
+/* CONTENEUR GLOBAL */
+.wrapper {
+  width: 100%;
+  min-height: 100vh;
+  padding: 1rem 0;
+  display: flex;
+  align-items: center; /* Centre parfaitement verticalement */
+  justify-content: center;
+  background-color: #f5f3f0;
+  overflow: hidden; /* Empêche le scroll */
+}
+
+/* CONTAINER LOGIN */
+.login-container {
+  width: 100%;
+  max-width: 400px; /* Réduit encore */
+  background-color: #ffffff;
+  padding: 1rem 2rem; /* padding raisonnable */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  min-height: 320px; /* Plus compact */
+  justify-content: center;
+}
+
+/* LOGO */
+.logo-img {
+  width: 130px; /* Un peu plus petit pour tenir */
+  height: auto;
+  margin-bottom: 1rem;
+}
+
+/* TITRE */
+.login-container h2 {
+  font-size: 1.6rem;
+  font-family: 'Georgia', serif;
+  font-weight: normal;
+  text-align: center;
+  color: #6D4C41;
+  margin-bottom: 0.8rem;
+}
+
+/* SOUS-TITRE */
+.subtitle {
+  font-size: 1rem;
+  color: #7c5c48;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+/* SÉLECTION DU RÔLE */
+.role-selection {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.role-btn {
+  padding: 0.6rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  width: 48%;
+}
+
+.formateur-btn {
+  background-color: #c69c81;
+}
+
+.apprenant-btn {
+  background-color: #99e6e6;
+}
+
+.role-btn:hover {
+ 
+  transform: scale(1.05);
+}
+
+/* DIVISEUR */
+.divider {
+  text-align: center;
+  color: #7c5c48;
+  margin: 0.8rem 0;
+  font-size: 0.9rem;
+}
+
+/* FORMULAIRE DE CONNEXION */
+.login-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0.8rem;
+}
+
+.input-group label {
+  margin-bottom: 0.3rem;
+  color: #7c5c48;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"] {
+  padding: 0.5rem 0.8rem;
+  font-size: 0.9rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus {
+  border-color: #c69c81;
+  box-shadow: 0 0 10px rgba(198, 156, 129, 0.3);
+  outline: none;
+}
+
+/* BOUTON DE CONNEXION */
+.login-btn {
+  width: 100%;
+  padding: 0.6rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #c69c81;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-top: 1rem;
+}
+
+.login-btn:hover {
+  background-color: #a67b5e;
+  transform: scale(1.05);
+}
+
+/* LIEN MOT DE PASSE OUBLIÉ */
+.forgot-password {
+  text-align: center;
+  margin-top: 0.8rem;
+  font-size: 0.85rem;
+  color: #888;
+}
+
+.forgot-password a {
+  color: #a67b5e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.forgot-password a:hover {
+  text-decoration: underline;
+}

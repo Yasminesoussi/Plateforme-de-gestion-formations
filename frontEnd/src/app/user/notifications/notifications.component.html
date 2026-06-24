@@ -1,0 +1,40 @@
+<!-- notification-bell.component.html -->
+<li class="nav-item dropdown">
+    <div class="notification-container">
+        <button class="notification-button" (click)="toggleNotifications()">
+          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
+            <div class="icon-wrapper">
+            <i class="bi bi-bell"></i>
+            <span *ngIf="unreadCount > 0" class="badge badge-danger badge-counter">{{ unreadCount }}</span>
+          </div>
+          </a>      
+        </button>
+      
+        <div *ngIf="showNotifications" class="notification-dropdown">
+          <div class="notification-header">
+            <h5>Notifications</h5>
+            <button (click)="markAllAsRead()" class="mark-read-btn">
+              Marquer tout comme lu
+            </button>
+
+            <button (click)="clearAllNotifications()" class="mark-read-btm">
+              Supprimer l’historique
+            </button>
+
+          </div>
+          
+          <div *ngIf="notifications.length === 0" class="empty-notifications">
+            Aucune notification
+          </div>
+          
+          <div *ngFor="let notif of notifications" 
+               class="notification-item" 
+               [class.unread]="!notif.read"
+               >
+            <div class="notification-message">{{ notif.message }}</div>
+            <div class="notification-time">{{ notif.createdAt | date:'short' }}</div>
+          </div>
+        </div>
+      </div>
+    </li>
+    

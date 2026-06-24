@@ -1,0 +1,115 @@
+.container {
+    max-width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 100%;
+    display: flex;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .bg-image {
+    background-color: #f8f9fc;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .full-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* FORMULAIRE */
+  
+  .col-lg-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .form-wrapper {
+    width: 100%;
+    max-width: 420px;
+    padding: 3rem 2rem;
+    margin: auto;
+  }
+  
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: normal;
+    font-family: 'Georgia', serif;
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #6D4C41;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-control-user {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    transition: border-color 0.3s ease;
+  }
+  
+  .form-control-user:focus {
+    border-color: #a67b5e;
+    outline: none;
+  }
+  
+  .checkbox-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .btn-user {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #c69c81;
+    border: none;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* LOGO */
+.logo-img {
+  width: 160px; /* plus petit */
+  height: auto;
+  margin-bottom: 0.5rem; /* réduit */
+}
+
+
+  .btn-user:hover {
+    background-color: #a67b5e;
+  }
+  
+  .text-center a.small {
+    display: inline-block;
+    margin-top: 0.5rem;
+    color: #888;
+    text-decoration: none;
+  }
+  
+  .text-center a.small:hover {
+    text-decoration: underline;
+  }
+  

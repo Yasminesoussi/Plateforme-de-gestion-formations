@@ -1,0 +1,164 @@
+
+  <app-header-user></app-header-user>
+
+ <!-- Section Start -->
+
+<div class="container mb-5">
+    <div class="row align-items-center">
+   <!-- Texte fixe à gauche -->
+  <div class="col-lg-7 hero-content">
+    <h3 class="hero-title">
+      Votre centre de formation en ligne
+    </h3>
+    <p class="hero-subtitle">
+      Apprenez à votre rythme, où que vous soyez.
+    </p>
+    <a [routerLink]="'/about'" class="btn btn-primary-custom me-3">En savoir plus</a>
+  <a [routerLink]="'/contact'" class="btn btn-outline-custom">Nous rejoindre</a>
+  </div>
+  
+  
+    <!-- Carousel d'images à droite -->
+  <!-- Carousel d'images à droite -->
+  <div class="col-lg-5 d-flex justify-content-center">
+    <div style="height:700px; width: 619px; overflow: hidden;">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide>
+          <img
+            src="../../../assets/user-style/img/form.jpg"
+            alt="Image 1"
+            class="carousel-img"
+          >
+        </ng-template>
+        <ng-template carouselSlide>
+          <img
+            src="../../../assets/user-style/img/plat.jpg"
+            alt="Image 2"
+            class="carousel-img"
+          >
+        </ng-template>
+  
+        <ng-template carouselSlide>
+          <img
+            src="../../../assets/user-style/img/pexels.jpg"
+            alt="Image 3"
+            class="carousel-img"
+          >
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+  
+  
+    </div>
+  </div>
+  
+  
+  <!-- Section End -->
+
+
+<!-- Formations Start -->
+<div class="container-xxl py-5" *ngIf="formations && formations.length > 0">
+  <div class="container">
+
+    <!-- Affichage de la catégorie depuis la première formation -->
+    <h1 class="about-title">
+      Les formations de la catégorie {{ currentCategoryName }}
+
+    </h1>
+
+    <div data-bs-ride="carousel">
+      <div class="row g-3">
+        <div class="col-lg-3 col-md-6 col-sm-6" *ngFor="let for of formations">
+          <div class="card h-100 shadow-sm border-0 text-center p-3">
+
+            <!-- Image -->
+            <img
+              [src]="for.image?.path ? 'http://localhost:3000/' + for.image.path : 'assets/default-formation.jpg'"
+              class="img-fluid mb-3"
+              style="height: 160px; object-fit: cover; border-radius: 12px;"
+              alt="Formation image"
+            />
+
+            <div class="card-body p-2">
+              <h5 class="card-title fw-bold">{{ for.name }}</h5>
+
+              <p class="text-muted mb-1">
+                {{ for.formateur.name || 'Formateur inconnu' }}
+              </p>
+
+              <h6 class="text-primary mb-3">{{ for.prix }}</h6>
+
+              <a
+                [routerLink]="'/DetailsFormation/' + for._id"
+                class="btn btn-primary btn-sm"
+              >
+                En savoir plus
+              </a>
+
+              <!-- Like Button (si connecté) -->
+              <button
+                *ngIf="user"
+                class="btn btn-sm"
+                [ngClass]="isLiked(for._id) ? 'btn-danger' : 'btn-light'"
+                (click)="toggleLike(for._id)"
+              >
+                <i class="fas fa-thumbs-up"></i>
+                {{ isLiked(for._id) ? 'Je n\'aime plus' : 'J\'aime' }}
+                <span class="count">({{ for.likesCount || 0 }})</span>
+              </button>
+
+              <!-- Like Button (visiteur) -->
+              <button
+                *ngIf="!user"
+                class="btn btn-light btn-sm"
+                disabled
+                style="pointer-events: none; opacity: 0.7; cursor: default;"
+              >
+                <i class="fas fa-thumbs-up"></i>
+                {{ for.likesCount || 0 }} j’aime
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Affichage si aucune formation trouvée -->
+<div *ngIf="formations && formations.length === 0">
+  <p class="alert alert-info">Aucune formation trouvée dans cette catégorie.</p>
+</div>
+
+<div *ngIf="formations.length===0">
+    <p class="alert alert-info">not found</p>
+</div>
+<!-- Formations End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<app-chatbot></app-chatbot>
+
+
+
+      
+
+ 
+  <app-footer-user></app-footer-user>
+
+ 

@@ -1,0 +1,170 @@
+<!-- Avis Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <!-- Titre de section -->
+    <div class="section-title-wrapper wow fadeInUp" data-wow-delay="0.1s">
+      <p class="subtitle">Partagez votre avis</p>
+      <h1 class="main-heading">Vos expériences comptent</h1>
+      <div class="line-divider"></div>
+    </div>
+
+    <!-- Bouton Écrire un avis -->
+    <div class="text-center my-4">
+      <button 
+        type="button" 
+        class="btn btn-nude" 
+        [disabled]="!isLoggedIn"
+        (click)="openModal()"
+      >
+        <i class="fas fa-edit me-2"></i> Écrire un avis
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- Liste des avis -->
+<div class="container py-5">
+
+  
+  <div class="review-grid">
+    <!-- Affiche les avis avec limite ou tous selon l'état showAll -->
+    <div class="review-card" *ngFor="let avis of (showAll ? avisList : avisList.slice(0, 3))">
+      <div class="d-flex align-items-center mb-2">
+        <img 
+          *ngIf="avis.user?.image?.path" 
+          [src]="avis.user.image.path" 
+          alt="Avatar de {{ avis.user?.name || 'Anonyme' }}" 
+          class="rounded-circle avatar-image"
+        />&nbsp;&nbsp;
+        <h5 class="fw-bold m-0"><strong>{{ avis.user?.name || 'Anonyme' }}</strong></h5>
+      </div>
+    
+      <h4 class="avis-title fw-bold mb-2">
+        <i class="fas fa-quote-left text-muted me-2"></i>{{ avis.titre }}
+      </h4>
+      
+    
+      <p class="text-muted mb-2">
+        <small>{{ formatDate(avis.dateExperience) }}</small>
+      </p>
+      <div class="mb-2">
+        <ng-container *ngFor="let star of getStars(avis.note); let i = index">
+          <i 
+            class="fa fa-star" 
+            [class.text-warning]="star"
+            [class.text-muted]="!star"
+            aria-hidden="true"
+          ></i>
+        </ng-container>
+      </div>
+      <p class="flex-grow-1">{{ avis.contenu }}</p>
+    
+     
+    
+     
+       <!-- Réponse admin -->
+       <div *ngIf="avis.response" class="admin-response mt-3 p-3 rounded">
+        <strong>Réponse de l'administration :</strong>
+        <p>{{ avis.response }}</p>
+
+      </div>
+
+      <small class="text-muted mt-auto d-block">
+        Posté le {{ formatDate(avis.createdAt) }}
+      </small>
+
+    </div>
+    
+    
+  </div>
+
+  <!-- Bouton Voir Plus/Voir Moins -->
+  <div class="text-center mt-4">
+    <button class="btn btn-nude" *ngIf="avisList.length > 3" (click)="toggleShowAll()">
+      {{ showAll ? 'Voir moins' : 'Voir plus' }}
+    </button>
+  </div>
+</div>
+
+<!-- Modal Bootstrap -->
+<!-- Modal Bootstrap -->
+<div 
+  class="modal fade custom-backdrop" 
+  [class.show]="isModalOpen" 
+  [style.display]="isModalOpen ? 'block' : 'none'" 
+  tabindex="-1" 
+  (click)="closeModal()"
+>
+  <div class="modal-dialog modal-lg modal-dialog-centered" (click)="$event.stopPropagation()">
+    <div class="modal-content bg-nude border-0 rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title">Racontez-nous votre expérience plus en détail</h5>
+        <button type="button" class="btn-close" (click)="closeModal()" aria-label="Fermer"></button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Étoiles de notation -->
+        <div class="mb-4 text-center">
+          <label class="form-label d-block">Notez votre expérience :</label>
+          <div class="star-rating">
+            <i 
+              class="fa fa-star" 
+              *ngFor="let star of [1,2,3,4,5]; let i = index"
+              [class.active]="i < selectedRating"
+              (mouseenter)="hoverRating = i + 1"
+              (mouseleave)="hoverRating = 0"
+              (click)="setRating(i + 1)"
+              [class.hovered]="i < hoverRating">
+            </i>
+          </div>
+        </div>
+
+        <!-- Champ texte -->
+        <div class="mb-3">
+          <textarea 
+            class="form-control" 
+            rows="5" 
+            [(ngModel)]="contenu"
+            name="contenu"
+            placeholder="Qu'est-ce qui ne s'est pas bien passé ? Comment cette entreprise pourrait-elle s'améliorer ?"></textarea>
+        </div>
+
+        <!-- Titre de l'avis -->
+        <div class="mb-3">
+          <label for="titreAvis" class="form-label">Donnez un titre à votre avis</label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="titreAvis" 
+            [(ngModel)]="titre"
+            name="titre"
+            placeholder="Quel aspect de votre expérience souhaitez-vous mettre en avant ?">
+        </div>
+
+        <!-- Date de l'expérience -->
+        <div class="mb-3">
+          <label for="dateExperience" class="form-label">Date de l'expérience</label>
+          <input 
+            type="date" 
+            class="form-control" 
+            id="dateExperience" 
+            [(ngModel)]="dateExperience"
+            name="dateExperience">
+        </div>
+
+        <!-- Note bas de modal -->
+        <p class="small text-muted">
+          En publiant cet avis, vous confirmez qu'il <a href="#">se base sur une expérience authentique</a> et que vous ne l'avez pas écrit en échange d'incitatif.
+        </p>
+      </div>
+
+      <div class="modal-footer border-0">
+        <button type="button" class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+        <button type="button" class="btn btn-nude" (click)="submitAvis()">Soumettre l’avis</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Avis End -->
+
+<!-- Avis End -->

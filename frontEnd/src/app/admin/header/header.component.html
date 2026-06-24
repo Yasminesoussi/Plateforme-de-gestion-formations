@@ -1,0 +1,64 @@
+<head><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
+
+    <!-- Sidebar Toggle (Topbar) -->
+    <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
+        <i class="fa fa-bars"></i>
+    </button>
+
+    <!-- Topbar Search -->
+    <form (submit)="searchAndNavigate()" class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search custom-search">
+        <div class="input-group">
+          <input type="text"
+                 [(ngModel)]="searchQuery"
+                 name="search"
+                 class="form-control bg-light border-0 small"
+                 placeholder="Rechercher..."
+                 aria-label="Search"
+                 aria-describedby="basic-addon2">
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="submit">
+              <i class="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      
+
+    <!-- Topbar Navbar -->
+    <ul class="navbar-nav ml-auto">
+        <!-- Nav Item - Alerts -->
+        <app-notifications></app-notifications>
+
+       
+
+        <div class="topbar-divider d-none d-sm-block"></div>
+
+       <!-- Nav Item - User Information -->
+<!-- Nav Item - User Information -->
+<li class="nav-item dropdown no-arrow">
+    <a class="nav-link dropdown-toggle d-flex align-items-center"  id="userDropdown" role="button"
+        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span class="mr-2 d-none d-lg-inline font-weight-bold" style="color: #6D4C41;" *ngIf="user">
+            {{ user.name }}
+        </span>
+        <i class="fas fa-caret-down ml-1" style="color: #BCAAA4;"></i>
+        <img class="img-profile rounded-circle ml-2" src="https://bootdey.com/img/Content/avatar/avatar7.png">
+    </a>
+    <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
+        aria-labelledby="userDropdown" style="background-color: #F5E1DA; border-color: #E0BFA7;">
+        <a routerLink="/profile"  class="dropdown-item"  style="color: #6D4C41;">
+            <i class="fas fa-user fa-sm fa-fw mr-2" style="color: #BCAAA4;"></i> Profile
+        </a>
+        <div class="dropdown-divider"></div>
+        <button class="dropdown-item" (click)="logout()" data-toggle="modal" data-target="#logoutModal" style="color: #6D4C41;">
+            <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2" style="color: #BCAAA4;"></i> Logout
+        </button>
+    </div>
+</li>
+
+
+
+    </ul>
+</nav>

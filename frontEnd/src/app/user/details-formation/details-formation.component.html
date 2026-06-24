@@ -1,0 +1,105 @@
+<app-header-user></app-header-user>
+
+<div class="container">
+  <br>
+      <br>
+     
+      
+  <div class="card formation-details">
+
+    <div class="row g-0">
+      
+      <!-- Image de la formation -->
+      <div class="col-md-5 image-container">
+        <img [src]="formation.image ? 'http://localhost:3000/' + formation.image.path : 'assets/default-formation.jpg'" 
+             class="img-fluid rounded-start" alt="Formation Image">
+      </div>
+
+      <!-- Détails de la formation -->
+      <div class="col-md-7">
+        <div class="card-body">
+          <h2 class="about-title">{{formation.name}}</h2>
+          <p class="subtitle">Formateur</p>
+           <h5 class="sub">{{ formation.formateur.name || 'Non défini' }}</h5>
+
+           <br>
+
+           <div class="rating">
+            <p class="subtitle">Likes</p>
+            <div class="likes-container">
+              <span class="likes-count">{{ formation.likesCount || 0 }}</span>
+              <span class="heart">♥</span>
+            </div>
+          </div>
+
+          
+          <br>
+          <!-- Description -->
+          <p class="subtitle">Description</p>
+          <h5 class="sub">{{ formation.description }}</h5>
+<br>
+
+<p class="subtitle">Level</p>
+<h5 class="sub">{{ formation.level }}</h5>
+<br> 
+
+          <p class="subtitle">Prix</p>
+          <h4 class="sub">{{ formation.prix | currency:'TND':'symbol' }}</h4>
+
+          <p class="subtitle">Date</p>
+          <h4 class="sub">Du {{ formatDate(formation.startDate) }} au {{ formatDate(formation.endDate) }}</h4>
+
+
+         <!-- Si l'apprenant connecté mais non inscrit, affiche le bouton "S'inscrire" avec modal -->
+<button *ngIf="!isInscrit && authService.isAuthenticated() && getUser()?.user?.role === 'Apprenant'" 
+class="btn btn-primary btn-lg" 
+data-bs-toggle="modal" 
+data-bs-target="#inscriptionModal">
+S'inscrire
+</button>
+
+<!-- Cas 2 : Utilisateur non connecté -->
+<a *ngIf="!authService.isAuthenticated()" 
+  class="btn btn-primary btn-lg" 
+  [routerLink]="'/signInUser'">
+  Connectez-vous pour vous inscrire
+</a>
+
+<!-- Si l'apprenant est déjà inscrit, affiche "Se désinscrire" sans modal -->
+<button *ngIf="isInscrit && authService.isAuthenticated() && getUser()?.user?.role === 'Apprenant'" 
+class="btn btn-danger btn-lg" 
+(click)="desinscrireApprenant()">
+Se désinscrire
+</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal d'inscription à une formation -->
+<div class="modal fade" id="inscriptionModal" tabindex="-1" aria-labelledby="inscriptionModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inscriptionModalLabel">Inscription à la formation</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fermer"></button>
+      </div>
+      <div class="modal-body" *ngIf="formation">
+        <p>Voulez-vous inscrire à la formation suivante ?</p>
+        <ul class="list-group">
+          <li class="list-group-item"><strong>Nom :</strong>{{ formation.name }}</li>
+          <li class="list-group-item"><strong>formateur :</strong>{{ formation.formateur.name || 'Non défini' }}</li>
+          <li class="list-group-item"><strong>Prix :</strong> {{ formation.prix | currency:'TND':'symbol' }}</li>
+        </ul>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button class="btn btn-success" (click)="inscrireApprenant()">Confirmer l'inscription</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer-user></app-footer-user>

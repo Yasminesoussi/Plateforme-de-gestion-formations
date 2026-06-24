@@ -1,0 +1,63 @@
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  .modal-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    background: transparent; /* pour enlever tout fond blanc */
+  }
+  
+  
+  .modal-content img {
+    max-width: 90vw;   /* 80% largeur fenêtre */
+    max-height: 90vh;  /* 80% hauteur fenêtre */
+    border-radius: 4px;
+    box-shadow: 0 0 15px #000;
+  }
+  
+  .close-btn {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background: #fff;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    line-height: 24px;
+    padding: 0;
+  }
+  
+
+    /* Delete Button Style */
+    .btn-delete {
+      background-color: #f5b7b1;  /* Rose doux mais contrasté */
+      color: #c0392b;  /* Rouge plus foncé pour le texte */
+      border: 1px solid #e74c3c; /* Bordure rouge plus marquée */
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+    
+    .btn-delete:hover {
+      background-color: #f2a8a1; /* Rose plus prononcé au survol */
+      transform: translateY(-3px); /* Effet de flottement plus accentué */
+    }
+    
+    .btn-delete i {
+      font-size: 18px;
+      color: #c0392b;  /* Couleur de texte rouge plus foncé */
+      transition: color 0.3s ease;
+    }
+    
+    .btn-delete:hover i {
+      color: #a83226; /* L'icône devient plus foncée au survol */
+    }

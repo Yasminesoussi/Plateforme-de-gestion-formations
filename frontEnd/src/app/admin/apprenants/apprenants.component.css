@@ -1,0 +1,159 @@
+/* Style du bouton */
+.btn-soft-primary {
+    background-color: #a0c4ff; /* Une teinte plus douce de bleu */
+    color: #333; /* Texte plus foncé pour le contraste */
+    border-radius: 12px; /* Coins arrondis pour un look plus moderne */
+    padding: 8px 20px; /* Un peu plus d'espace autour du texte */
+    font-weight: 500; /* Police un peu plus fine */
+    border: 1px solid #8ab8ff; /* Bordure légère pour faire ressortir le bouton */
+}
+
+.btn-soft-primary:hover {
+    background-color: #7aabf7; /* Une teinte un peu plus foncée lors du survol */
+    border-color: #659bff; /* Border également ajustée lors du survol */
+    color: #fff; /* Texte en blanc pour un bon contraste */
+}
+
+.btn-soft-primary i {
+    margin-right: 8px; /* Un petit écart entre l'icône et le texte */
+}
+
+
+.no-formation {
+  color: #999;
+  font-style: italic;
+  padding: 8px;
+}
+
+/* Style du bouton */
+.btn-soft-primary {
+    background-color: #a0c4ff; /* Une teinte plus douce de bleu */
+    color: #333; /* Texte plus foncé pour le contraste */
+    border-radius: 12px; /* Coins arrondis pour un look plus moderne */
+    padding: 8px 20px; /* Un peu plus d'espace autour du texte */
+    font-weight: 500; /* Police un peu plus fine */
+    border: 1px solid #8ab8ff; /* Bordure légère pour faire ressortir le bouton */
+}
+
+.btn-soft-primary:hover {
+    background-color: #7aabf7; /* Une teinte un peu plus foncée lors du survol */
+    border-color: #659bff; /* Border également ajustée lors du survol */
+    color: #fff; /* Texte en blanc pour un bon contraste */
+}
+
+.btn-soft-primary i {
+    margin-right: 8px; /* Un petit écart entre l'icône et le texte */
+}
+
+
+
+
+.active-status {
+    background-color: #28a745; /* Vert Bootstrap */
+    color: white;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    display: inline-block;
+    text-align: center;
+    min-width: 80px;
+  }
+
+  
+
+/* Delete Button Style */
+.btn-delete {
+    background-color: #f5b7b1;  /* Rose doux mais contrasté */
+    color: #c0392b;  /* Rouge plus foncé pour le texte */
+    border: 1px solid #e74c3c; /* Bordure rouge plus marquée */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-delete:hover {
+    background-color: #f2a8a1; /* Rose plus prononcé au survol */
+    transform: translateY(-3px); /* Effet de flottement plus accentué */
+  }
+  
+  .btn-delete i {
+    font-size: 18px;
+    color: #c0392b;  /* Couleur de texte rouge plus foncé */
+    transition: color 0.3s ease;
+  }
+  
+  .btn-delete:hover i {
+    color: #a83226; /* L'icône devient plus foncée au survol */
+  }
+
+ /* payment.component.css */
+
+
+
+
+
+
+ /* payment.component.css */
+
+/* Style pour l'icône de paiement */
+.pay-icon {
+  font-size: 2.5rem; /* Grande taille pour rendre l'icône visible et claire */
+  color: #2c3e50; /* Couleur initiale foncée pour un aspect professionnel */
+  cursor: pointer; /* Pour indiquer que l'icône est cliquable */
+  transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease, filter 0.3s ease; /* Effets d'animation fluides */
+  display: inline-block; /* Permet de la traiter comme une icône en ligne */
+  border-radius: 10px; /* Coins arrondis pour un effet plus doux */
+  padding: 12px; /* Espace autour de l'icône pour la rendre plus visible et aérée */
+}
+
+/* Effet au survol */
+.pay-icon:hover {
+  color: #3498db; /* Bleu vif pour attirer l'attention lors du survol */
+  transform: scale(1.25); /* Légère agrandissement de l'icône pour un effet de zoom */
+  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.2); /* Ombre plus marquée pour un effet de profondeur */
+  filter: brightness(1.3); /* Augmenter la luminosité lors du survol pour un effet de brillance */
+}
+
+/* Effet lors du clic */
+.pay-icon:active {
+  transform: scale(1.1); /* Petite réduction lors du clic pour simuler une interaction */
+  color: #2980b9; /* Couleur bleu foncé lors du clic pour un retour visuel */
+  filter: brightness(1.1); /* Assombrir légèrement l'icône lors du clic pour un effet interactif */
+}
+
+/* Animation de pulsation pour attirer l'attention */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.15);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Ajouter un effet de pulsation lorsque l'icône est au repos */
+
+
+/* Variation de couleur pour le focus */
+.pay-icon:focus {
+  outline: none; /* Retirer l'outline pour un effet plus élégant */
+  color: #16a085; /* Couleur verte lors du focus pour un effet subtil mais distinct */
+}
+
+.formation-container {
+  display: flex;
+  flex-direction: column; /* les items l'un en dessous de l'autre */
+  gap: 8px; /* espace entre chaque formation */
+}
+
+.formation-item {
+  padding: 8px 12px;
+  background-color: #e0f7fa; /* bleu très clair */
+  color: #006064; /* bleu foncé */
+  border-radius: 6px;
+  font-weight: 500;
+  width: fit-content;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}

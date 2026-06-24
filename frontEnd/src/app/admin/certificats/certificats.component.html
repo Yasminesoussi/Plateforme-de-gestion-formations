@@ -1,0 +1,126 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <app-side-bar></app-side-bar>
+
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+        <div id="content">
+            <app-header></app-header>
+
+            <!-- Begin Page Content -->
+            
+<!-- Certificats Component -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+        <h1 class="h3 mb-0 text-gray-800">Certificats</h1>
+    </div>
+
+
+<!-- Champ de filtre -->
+<div class="form-group mb-3">
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Filtrer par nom de formation..."
+      [(ngModel)]="searchTerm"
+      (input)="filterCertificates()"  
+    />
+  </div>
+
+
+    
+    <div >
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Liste des certificats</h6>
+            </div>
+            <div class="card-body">
+                <div *ngIf="certificats.length === 0" class="alert alert-info">
+                    Aucun certificat trouvé.
+                </div>
+                
+                <div class="table-responsive" *ngIf="certificats.length > 0">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Apprenant</th>
+                                <th>Certificat</th>
+                                <th>Formation</th>
+                                <th>Date début</th>
+                                <th>Date fin</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let cert of certificats; let i = index">
+                                <td>{{ i + 1 }}</td>
+                                <td>{{ cert?.apprenant?.name || 'Inconnu' }}</td>
+                                <td>
+
+
+                                    <img 
+  [src]="cert?.path" 
+  alt="Certificat" 
+  class="img-fluid" 
+  style="max-width: 150px; cursor: pointer;"
+  (click)="openImage(cert.path)"
+>
+
+                                       
+                                </td>
+                                <td>{{ cert?.session?.formation?.name || 'Non spécifiée' }}</td>
+
+                                <td>{{ cert?.session?.startDate ? (cert.session?.startDate | date: 'dd/MM/yyyy') : 'Non spécifiée' }}</td>
+                                <td>{{ cert?.session?.endDate ? (cert.session?.endDate | date: 'dd/MM/yyyy') : 'Non spécifiée' }}</td>
+                                
+
+
+
+                                <td>
+                                   
+                            
+                                    <!-- Bouton Supprimer -->
+                                    <button type="button" (click)="confirmDelete(cert._id)" class="btn btn-delete rounded-pill">
+                                      <i class="fas fa-trash-alt"></i>
+                                    </button>
+                                  </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+
+
+<!-- Modale affichage image -->
+<div 
+  class="modal-overlay" 
+  *ngIf="selectedImage" 
+  (click)="closeImage()"
+>
+  <div class="modal-content" (click)="$event.stopPropagation()">
+    <img [src]="selectedImage" alt="Image agrandie" />
+    <button class="close-btn" (click)="closeImage()">×</button>
+  </div>
+</div>

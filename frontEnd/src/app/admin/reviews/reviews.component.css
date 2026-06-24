@@ -1,0 +1,15 @@
+.formation-container {
+    display: flex;
+    flex-direction: column; /* les items l'un en dessous de l'autre */
+    gap: 8px; /* espace entre chaque formation */
+  }
+  
+  .formation-item {
+    padding: 8px 12px;
+    background-color: #e0f7fa; /* bleu très clair */
+    color: #006064; /* bleu foncé */
+    border-radius: 6px;
+    font-weight: 500;
+    width: fit-content;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }

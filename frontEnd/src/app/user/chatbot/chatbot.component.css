@@ -1,0 +1,232 @@
+/* === Couleurs ===
+   Bleu-vert clair : #4fa3a3
+   Nude beige clair : #fdf6f2
+   Bulle beige : #eee2da
+*/
+
+.chatbot-wrapper {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  z-index: 1000;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* === Bouton flottant === */
+.chatbot-button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #4fa3a3;
+  color: white;
+  border: none;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  transition: all 0.3s ease;
+  user-select: none;
+  position: relative;
+  z-index: 1100;
+}
+
+.chatbot-button .material-icons {
+  font-size: 36px;
+}
+
+.chatbot-button:hover {
+  background: #3b8f8f;
+}
+
+.chatbot-button.active {
+  background: #d96d63;
+  transform: rotate(360deg) scale(0.95);
+}
+
+/* === Fenêtre du chatbot === */
+.chatbot-window {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 360px;
+  max-height: 0;
+  background: #fdf6f2;
+  border-radius: 20px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s ease, opacity 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  z-index: 1090;
+}
+
+.chatbot-window.open {
+  max-height: 550px;
+  opacity: 1;
+}
+
+/* === En-tête === */
+.chat-header {
+  background: #4fa3a3;
+  color: white;
+  padding: 16px;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chat-title {
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.close-btn {
+  background: none;
+  color: white;
+  font-size: 22px;
+  cursor: pointer;
+  border: none;
+  user-select: none;
+}
+
+.chat-title .material-icons {
+  font-size: 24px;
+  color: #fff;
+}
+
+/* === Zone messages === */
+.chat-messages {
+  height: 320px;
+  padding: 16px;
+  overflow-y: auto;
+  background: #fff;
+  flex-grow: 1;
+  border-radius: 0 0 20px 20px;
+  box-sizing: border-box;
+}
+
+.user, .bot {
+  display: flex;
+  margin-bottom: 12px;
+}
+
+.user {
+  justify-content: flex-end;
+}
+
+.bot {
+  justify-content: flex-start;
+}
+
+/* Conteneur regroupant message + suggestions + timestamp */
+.message-container {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+}
+
+.bot .message-container {
+  align-items: flex-start;
+}
+
+.user .message-container {
+  align-items: flex-end;
+}
+
+/* Bulles */
+.message-bubble {
+  padding: 10px 16px;
+  word-break: break-word;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  white-space: pre-wrap;
+  max-width: 100%;
+}
+
+.user .message-bubble {
+  background: #eee2da;
+  color: #4fa3a3;
+  border-radius: 18px 18px 0 18px;
+}
+
+.bot .message-bubble {
+  background: white;
+  color: #333;
+  border-radius: 18px 18px 18px 0;
+}
+
+/* Heure */
+.message-time {
+  font-size: 11px;
+  color: #999;
+  margin-top: 4px;
+}
+
+/* === Suggestions === */
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 8px;
+}
+
+.suggestions button {
+  background-color: #b5f2f2;
+  border: none;
+  border-radius: 20px;
+  padding: 6px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+  user-select: none;
+}
+
+.suggestions button:hover {
+  background-color: #ddb892;
+}
+
+/* === Champ d'entrée === */
+.chat-input {
+  display: flex;
+  padding: 12px;
+  border-top: 1px solid #e0e0e0;
+  background: #fdf6f2;
+  border-radius: 0 0 20px 20px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 10px 16px;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  margin-right: 8px;
+  background: #fff;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+
+.chat-input input:focus {
+  border-color: #4fa3a3;
+}
+
+.chat-input button {
+  background: #4fa3a3;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  user-select: none;
+}
+
+.chat-input button:hover {
+  background: #3b8f8f;
+}

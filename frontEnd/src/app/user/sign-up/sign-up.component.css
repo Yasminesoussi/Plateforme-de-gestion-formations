@@ -1,0 +1,123 @@
+/* CONTENEUR GLOBAL */
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #f5f3f0; /* Fond général */
+  overflow: hidden; /* Empêche le scroll */
+}
+
+.signup-container {
+  height: 100vh; /* PAS min-height, mais height fixe */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem; /* réduit le padding */
+  background-color: #f5f3f0;
+}
+
+/* FORMULAIRE */
+.signup-form {
+  width: 100%;
+  max-width: 600px; /* réduit la largeur */
+  background-color: #ffffff;
+  padding: 1rem 2rem; /* padding raisonnable */
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* LOGO */
+.logo-img {
+  width: 140px; /* un peu plus petit */
+  height: auto;
+  margin-bottom: 0.5rem; /* réduit l'espace sous le logo */
+}
+
+/* TITRE */
+.signup-form h2 {
+  font-size: 2rem; /* un peu plus petit */
+  font-family: 'Georgia', serif;
+  font-weight: normal;
+  text-align: center;
+  color: #6D4C41;
+  margin-bottom: 1.5rem; /* réduit */
+}
+
+/* GRID POUR LES INPUTS */
+.form-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem 1.5rem; /* réduit l'espacement */
+}
+
+/* GROUPES D'INPUTS */
+.input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-group label {
+  margin-bottom: 0.3rem;
+  color: #7c5c48;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.input-group input[type="text"],
+.input-group input[type="email"],
+.input-group input[type="password"],
+.input-group input[type="number"]  {
+  padding: 0.5rem 0.75rem;
+  font-size: 0.95rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  transition: border-color 0.3s ease;
+}
+
+.input-group input[type="text"]:focus,
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus,
+.input-group input[type="number"]:focus {
+  border-color: #c69c81;
+  outline: none;
+}
+
+/* BOUTON */
+.signup-btn {
+  width: 100%;
+  padding: 0.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #fff;
+  background-color: #c69c81;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+  margin-top: 1.5rem;
+}
+
+.signup-btn:hover {
+  background-color: #a67b5e;
+}
+
+/* LIEN LOGIN */
+.login-link {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.8rem;
+  color: #888;
+}
+
+.login-link a {
+  color: #a67b5e;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}

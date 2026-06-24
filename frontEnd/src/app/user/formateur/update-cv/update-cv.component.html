@@ -1,0 +1,37 @@
+<app-header-user></app-header-user>
+
+<div class="profile-section">
+  <h2 class="about-title">Mise à jour de votre CV</h2>
+  <div class="profile-card">
+    <form (ngSubmit)="updateCv()">
+      <div class="file-upload-wrapper">
+        <label for="cvFile" class="upload-label">
+          <div class="upload-icon">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="48"
+              viewBox="0 96 960 960"
+              width="48"
+            >
+              <path
+                fill="#4caf93"
+                d="M480 936q-132 0-231-83T108 636h60q27 99 110.5 160T480 860q119 0 203.5-72.5T794 598H610v-60h210v210h-60V662q-45 101-141.5 161T480 886q-146 0-246.5-100.5T133 539q0-143 100.5-243T480 196q142 0 243 100.5T824 539h-60q0-119-84-203T480 252q-119 0-203.5 84.5T192 539q0 118 84.5 203T480 826q99 0 174.5-58T746 598H626v-60h154q-34 112-130.5 177.5T480 936Z"
+              />
+            </svg>
+          </div>
+          <p class="upload-text">Cliquez pour téléverser votre CV</p>
+          <input type="file" id="cvFile" class="file-input" (change)="onFileChange($event)" required />
+        </label>
+        <!-- Affichage du nom du fichier sélectionné -->
+        <div *ngIf="selectedFile">
+          <p>Fichier sélectionné : {{ selectedFile.name }}</p>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary-modern">
+        Mettre à jour
+      </button>
+    </form>
+  </div>
+</div>
+
+<app-footer-user></app-footer-user>

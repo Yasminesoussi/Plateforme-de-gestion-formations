@@ -1,0 +1,173 @@
+/* Bouton nude */
+.btn-nude {
+  background-color: #f4e9dc;
+  color: #3e3e3e;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-weight: 500;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.btn-nude:hover {
+  background-color: #e2d3c0;
+  color: #2d2d2d;
+}
+
+.btn-nude i {
+  color: #b0866e; /* teinte nude douce */
+}
+
+/* Couleur de fond du modal */
+.bg-nude {
+  background-color: #fffaf5;
+}
+
+/* Container des cartes avec fond gris très clair */
+.review-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 colonnes */
+  gap: 24px; /* Espacement entre les cartes */
+  row-gap: 40px; /* Ajout d'espacement vertical entre les lignes */
+  justify-content: center; /* Centre le contenu */
+  margin-top: 40px;
+  padding: 0 20px;
+  background-color: #ffffff; /* gris très clair */
+  border-radius: 12px;
+}
+
+/* Carte d’avis avancée */
+.review-card {
+  background-color: #f5efe9; /* Beige clair */
+  border-radius: 16px;
+  padding: 24px 28px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 2px 6px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: default;
+  min-height: 320px;
+}
+
+/* Déplace les cartes de la première ligne */
+.review-card:nth-child(-n+3) {
+  margin-top: -80px; /* Déplacement pour la première ligne seulement */
+}
+
+/* Cartes des lignes supplémentaires */
+.review-card:nth-child(n+4) {
+  margin-top: 0; /* Aucune modification pour les lignes suivantes */
+}
+
+/* Hover effect */
+.review-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Section titre */
+.section-title-wrapper {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #6D4C41;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+}
+
+.main-heading {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #4E342E;
+  margin: 0;
+}
+
+.line-divider {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(90deg, #00bcd4, #007c91);
+  margin: 16px auto 0;
+  border-radius: 2px;
+}
+
+/* Star rating */
+.star-rating {
+  display: inline-block;
+}
+
+.star-rating i {
+  font-size: 2rem;
+  color: #ccc;
+  cursor: pointer;
+  transition: color 0.2s;
+  margin: 0 4px;
+}
+
+.star-rating i.active,
+.star-rating i.hovered {
+  color: #f5b84b;
+}
+
+/* Avatar image */
+.avatar-image {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+
+.avis-title {
+  font-size: 1.25rem; /* Taille du texte */
+  color: #4a4a4a; /* Couleur principale */
+  margin-bottom: 1rem; /* Espacement inférieur */
+  text-transform: capitalize; /* Mettre en majuscule chaque mot */
+  border-left: 4px solid #ffca28; /* Ligne décorative sur la gauche */
+  padding-left: 10px; /* Espacement à gauche pour ne pas coller à la ligne */
+}
+
+
+.admin-response {
+  background-color: #f8f9fa; /* gris clair très doux */
+  border-left: px solid #6c757d; /* gris foncé élégant */
+  color: #495057; /* texte gris foncé */
+  font-style: italic;
+  font-size: 0.9rem;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+}
+
+.admin-response strong {
+  color: #343a40; /* texte plus foncé pour titre */
+  display: block;
+  margin-bottom: 0.10rem;
+}
+
+
+.custom-backdrop {
+  position: fixed;         /* Pour recouvrir toute la fenêtre */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7); /* noir transparent à 70% */
+  z-index: 1050;           /* au-dessus du contenu normal */
+  display: none;           /* caché par défaut */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.custom-backdrop.show {
+  display: block;          /* affiché quand isModalOpen = true */
+}
+
+/* Facultatif : pour que le modal soit bien au-dessus du fond */
+.modal-dialog {
+  z-index: 1060;
+  position: relative;
+}

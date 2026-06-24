@@ -1,0 +1,106 @@
+.notification-container {
+  position: relative;
+  display: inline-block;
+}
+
+.notification-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #333;
+  padding: 0;
+}
+
+/* Nouvelle structure pour la cloche et le badge */
+.icon-wrapper {
+  position: relative;
+  display: inline-block;
+  font-size: 1.5rem; /* ← Taille de l’icône de cloche */
+  line-height: 1;
+}
+
+/* Le badge est collé à la cloche */
+.badge {
+  position: absolute;
+  top: -6px;            /* ↑ plus vers le haut */
+  left: -8px;           /* ← plus vers la gauche */
+  transform: translate(50%, -50%);
+  background-color: #f44336;
+  color: white;
+  border-radius: 50%;
+  padding: 6px 8px;       /* ↑ Taille du badge */
+  font-size: 0.75rem;     /* ↑ Taille du texte */
+  line-height: 1;
+  min-width: 20px;        /* ↑ Largeur minimale */
+  text-align: center;
+}
+
+
+/* Dropdown des notifications */
+.notification-dropdown {
+  position: absolute;
+  right: 0;
+  top: 100%;
+  width: 350px;
+  max-height: 500px;
+  overflow-y: auto;
+  background: white;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  z-index: 1000;
+}
+
+.notification-header {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.mark-read-btn {
+  background: none;
+  border: none;
+  color: #2196F3;
+  cursor: pointer;
+  font-size: 0.8rem;
+}
+
+.mark-read-btm {
+  background: none;
+  border: none;
+  color: #ee84b7;
+  cursor: pointer;
+  font-size: 0.8rem;
+
+}
+
+.notification-item {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  cursor: pointer;
+}
+
+.notification-item.unread {
+  background-color: #f8f9fa;
+  font-weight: bold;
+}
+
+.notification-item:hover {
+  background-color: #f0f0f0;
+}
+
+.notification-message {
+  margin-bottom: 5px;
+}
+
+.notification-time {
+  font-size: 0.8rem;
+  color: #666;
+}
+
+.empty-notifications {
+  padding: 15px;
+  text-align: center;
+  color: #666;
+}

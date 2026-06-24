@@ -1,0 +1,54 @@
+<div class="chatbot-wrapper">
+  <!-- Bouton flottant -->
+  <button class="chatbot-button" (click)="toggleChat()" [ngClass]="{ 'active': isChatOpen }">
+    <span class="material-icons">chat</span>
+  </button>
+
+  <!-- Fenêtre de chat -->
+  <div class="chatbot-window" [ngClass]="{ 'open': isChatOpen }">
+
+    <!-- En-tête du chatbot -->
+    <div class="chat-header">
+      <div class="chat-title">
+        <span class="material-icons">forum</span>
+        Chatbot
+      </div>
+      <button class="close-btn" (click)="toggleChat()">
+        <span class="material-icons">close</span>
+      </button>
+    </div>
+
+    <!-- Zone des messages -->
+    <div class="chat-messages" #chatContainer>
+      <div *ngFor="let message of messages" [ngClass]="message.sender">
+        <div class="message-container">
+          <div class="message-bubble">
+            {{ message.text }}
+          </div>
+
+          <!-- Suggestions sous le message du bot -->
+          <div *ngIf="message.sender === 'bot' && message.suggestions && message.suggestions.length > 0" class="suggestions">
+            <button *ngFor="let suggestion of message.suggestions" (click)="sendMessage(suggestion)">
+              {{ suggestion }}
+            </button>
+          </div>
+
+          <div class="message-time">{{ message.timestamp | date:'shortTime' }}</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Champ d'entrée -->
+    <div class="chat-input">
+      <input
+        [(ngModel)]="userInput"
+        placeholder="Tapez votre message..."
+        (keyup.enter)="sendMessage()"
+      />
+      <button (click)="sendMessage()">
+        <span class="material-icons">send</span>
+      </button>
+    </div>
+
+  </div>
+</div>

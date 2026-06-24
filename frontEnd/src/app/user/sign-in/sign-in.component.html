@@ -1,0 +1,42 @@
+<div class="wrapper">
+  <div class="login-container">
+    <!-- Logo au-dessus de la case -->
+    <div class="logo">
+      <img src="../../../assets/user-style/img/maison.jpg" alt="Logo" class="logo-img">
+    </div>
+    
+    <h2>Bienvenue !</h2>
+    <p class="subtitle">Connectez-vous ou inscrivez-vous selon votre rôle.</p>
+
+    <!-- Sélection du rôle -->
+    <div class="role-selection">
+      <button class="role-btn formateur-btn" routerLink="/signUpFormateur">
+        Je suis Formateur
+      </button>
+      <button class="role-btn apprenant-btn" routerLink="/signUpUser">
+        Je suis Apprenant
+      </button>
+    </div>
+
+    <div class="divider">OU</div>
+
+    <!-- Formulaire de connexion -->
+    <form class="login-form" (ngSubmit)="onSubmit()">
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" [(ngModel)]="form.email" placeholder="Entrez votre email" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" [(ngModel)]="form.password" placeholder="Entrez votre mot de passe" required>
+      </div>
+
+      <button type="submit" class="login-btn">Se connecter</button>
+
+      <p class="forgot-password">
+        <a routerLink="/ForgetPassword">Mot de passe oublié ?</a>
+      </p>
+    </form>
+  </div>
+</div>

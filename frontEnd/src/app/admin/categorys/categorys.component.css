@@ -1,0 +1,112 @@
+/* General Button Styles */
+.btn {
+  font-size: 16px;
+  padding: 8px 16px;
+  border: none;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2); /* Ombrage plus marqué */
+}
+
+/* Edit Button Style */
+.btn-edit {
+  background-color: #d4d4d4;  /* Gris clair avec plus de contraste */
+  color: #333;  /* Gris foncé pour le texte */
+  border: 1px solid #b0b0b0; /* Bordure plus marquée */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-edit:hover {
+  background-color: #b0b0b0; /* Gris plus foncé au survol */
+  transform: translateY(-3px); /* Effet de flottement légèrement plus prononcé */
+}
+
+.btn-edit i {
+  font-size: 18px;
+  color: #555;  /* Gris plus foncé pour l'icône */
+  transition: color 0.3s ease;
+}
+
+.btn-edit:hover i {
+  color: #222; /* L'icône devient encore plus foncée au survol */
+}
+
+/* Delete Button Style */
+.btn-delete {
+  background-color: #f5b7b1;  /* Rose doux mais contrasté */
+  color: #c0392b;  /* Rouge plus foncé pour le texte */
+  border: 1px solid #e74c3c; /* Bordure rouge plus marquée */
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-delete:hover {
+  background-color: #f2a8a1; /* Rose plus prononcé au survol */
+  transform: translateY(-3px); /* Effet de flottement plus accentué */
+}
+
+.btn-delete i {
+  font-size: 18px;
+  color: #c0392b;  /* Couleur de texte rouge plus foncé */
+  transition: color 0.3s ease;
+}
+
+.btn-delete:hover i {
+  color: #a83226; /* L'icône devient plus foncée au survol */
+}
+
+/* Responsive Button Adjustments */
+@media (max-width: 768px) {
+  .btn {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .btn-edit i, .btn-delete i {
+    font-size: 16px;
+  }
+}
+
+
+/* Style du bouton */
+.btn-soft-primary {
+  background-color: #a0c4ff; /* Une teinte plus douce de bleu */
+  color: #333; /* Texte plus foncé pour le contraste */
+  border-radius: 12px; /* Coins arrondis pour un look plus moderne */
+  padding: 8px 20px; /* Un peu plus d'espace autour du texte */
+  font-weight: 500; /* Police un peu plus fine */
+  border: 1px solid #8ab8ff; /* Bordure légère pour faire ressortir le bouton */
+}
+
+.btn-soft-primary:hover {
+  background-color: #7aabf7; /* Une teinte un peu plus foncée lors du survol */
+  border-color: #659bff; /* Border également ajustée lors du survol */
+  color: #fff; /* Texte en blanc pour un bon contraste */
+}
+
+.btn-soft-primary i {
+  margin-right: 8px; /* Un petit écart entre l'icône et le texte */
+}
+
+/* Style du bouton */
+.btn-soft-primary {
+  background-color: #a0c4ff; /* Une teinte plus douce de bleu */
+  color: #333; /* Texte plus foncé pour le contraste */
+  border-radius: 12px; /* Coins arrondis pour un look plus moderne */
+  padding: 8px 20px; /* Un peu plus d'espace autour du texte */
+  font-weight: 500; /* Police un peu plus fine */
+  border: 1px solid #8ab8ff; /* Bordure légère pour faire ressortir le bouton */
+}
+
+.btn-soft-primary:hover {
+  background-color: #7aabf7; /* Une teinte un peu plus foncée lors du survol */
+  border-color: #659bff; /* Border également ajustée lors du survol */
+  color: #fff; /* Texte en blanc pour un bon contraste */
+}
+
+.btn-soft-primary i {
+  margin-right: 8px; /* Un petit écart entre l'icône et le texte */
+}

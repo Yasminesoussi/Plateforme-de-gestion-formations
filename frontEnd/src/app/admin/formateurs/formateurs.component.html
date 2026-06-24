@@ -1,0 +1,252 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header></app-header>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Formateurs</h1>
+
+
+     
+
+
+        
+        </div>
+
+        <div class="mb-3">
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Rechercher par nom"
+            (input)="onSearch()"
+            class="form-control"
+          />
+        </div>
+
+        <!--Data Table-->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary"></h6>
+          </div>
+          <div class="card-body">
+
+            <div *ngIf="formateurs.length === 0" class="alert alert-info">
+              Aucun formateur trouvé.
+            </div>
+
+            <div class="table-responsive"  *ngIf="formateurs.length > 0">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Adresse</th>
+                    <th>Spécialite</th>
+                    <th>Formations</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+
+                <tbody *ngFor=" let form of formateurs ; let i=index ">
+                  <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{form.name}}</td>
+                    <td>{{form.email}}</td>
+                    <td>{{form.telephone}}</td>
+                    <td>{{form.adresse}}</td>
+                    <td>{{form.specialite}}</td>
+                   
+
+
+                    <td>
+                      <div *ngIf="form.formations && form.formations.length > 0" class="formation-container">
+                        <div *ngFor="let formation of form.formations" class="formation-item">
+                          {{ formation.name }}
+                        </div>
+                      </div>
+                      <div *ngIf="!form.formations || form.formations.length === 0" class="no-formation">
+                        Aucune formation
+                      </div>
+                    </td>
+                    
+                    
+                    
+                    <td>
+                      <!-- Le bouton "Inactive" est cliquable lorsque le statut est "inactive", et "Active" est non cliquable lorsque le statut est "active" -->
+                      <button
+                        (click)="activeStatus(form._id)"
+                        [disabled]="form.status === 'active'" 
+                        [ngClass]="{
+                          'btn-inactive': form.status === 'inactive', 
+                          'btn-active': form.status === 'active'      
+                        }"
+                        class="btn btn-lg"
+                      >
+                        {{ form.status === 'inactive' ? 'Inactive' : 'Active' }} <!-- Affiche 'Inactive' par défaut, et 'Active' après le clic -->
+                      </button>
+                    </td>
+                    
+                    
+                    
+
+                    
+                    
+                    
+                    <td>
+                      <div class="d-flex align-items-center">
+                      <!-- Bouton de suppression -->
+                   
+
+                      <!-- Bouton de téléchargement du CV -->
+                      <a download class="btn btn-download rounded-pill ms-2" (click)="downloadcv(form._id)">
+                        <i class="fas fa-download"></i>
+                      </a>
+
+                      <button
+        type="button"
+        class="btn d-flex align-items-center px-3 mx-1"
+        style="background-color: #EADBC8; color: #5A4636; border: none; border-radius: 20px;"
+        (click)="openModal(form._id)"
+        data-bs-toggle="modal"
+        data-bs-target="#affecterFormationModal">
+        <i class="fas fa-user-tie mr-2"></i> <!-- Icône professionnelle -->
+        Affecter
+    </button>
+    
+                  
+  </div>
+                    </td>
+                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+   <!-- Footer -->
+   <footer >
+    <div class="container my-auto">
+      <div class="copyright text-center my-auto">
+        <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select "Logout" below if you are ready to end your current session.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+          Cancel
+        </button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Affecter Formation -->
+<form >
+  <div
+    class="modal fade"
+    id="affecterFormationModal"
+    tabindex="-1"
+    aria-labelledby="affecterFormationLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="affecterFormationLabel">
+            Affecter Formation
+          </h1>
+          <button
+            type="button"
+            class="close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+  
+          <!-- Catégorie -->
+          <div class="mb-3">
+            <label for="category" class="col-form-label">Formation:</label>
+            <select class="form-control"  #selectFormation>
+              <option value="">Sélectionnez une formation</option>
+              <option *ngFor=" let for of formations" [value]="for._id" >
+             {{for.name}}
+              </option>
+            </select>
+            
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Fermer
+          </button>
+          <button type="submit" class="btn btn-primary" (click)="affecterFormation(selectFormation.value)">
+            affecter 
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

@@ -1,0 +1,205 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header></app-header>
+     
+
+      <h2>Historique de Paiement</h2>
+     
+      <!-- Allez dans cette section si showError est vrai -->
+      <div class="container mt-3" *ngIf="showError">
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+          {{ errorMessage }}
+          <button type="button" class="btn-close" (click)="showError = false"></button>
+        </div>
+      </div>
+      
+      <div *ngFor="let p of payment" class="payment-item">
+        <div class="training-info">
+          <details class="training-details">
+            <summary class="training-name">Formation : {{ p.formation?.name }}</summary>
+      
+            <div class="amount-summary">
+              <div class="summary-item">
+                <span class="label">Montant total:</span>
+                <span class="value">
+                  {{ p.totalAmount | currency:'TND':'symbol' }}
+                </span>
+              </div>
+      
+              <div class="summary-item">
+                <span class="label">Montant payé:</span>
+                <span class="value paid">
+                  {{ getTotalTranches(p) | currency:'TND':'symbol' }}
+                </span>
+              </div>
+      
+              <div class="summary-item">
+                <span class="label">Reste à payer:</span>
+                <span class="value due">
+                  {{ p.montant_restant | currency:'TND':'symbol' }}
+                </span>
+              </div>
+            </div>
+          </details>
+        </div>
+      </div>
+      
+      
+      
+
+      
+        
+
+      
+
+
+
+
+
+      <!-- echnaciciier de payement -->
+      <div class="container-fluid mt-4">
+        <h2 class="mb-4">Échéancier de paiement</h2>
+      
+
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped">
+            <thead class="thead-dark">
+              <tr>
+                <th>Apprenant</th>
+                <th>Formation</th>
+                <th>Total</th>
+                <th>Statut</th>
+                <th>Montant Restant</th>
+                <th>Montants Payés</th>
+                <th>Dates de Paiement</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let p of payment">
+                <td>{{ p.apprenant?.name }}</td>
+                <td>{{ p.formation?.name }}</td>
+                <td>{{ p.totalAmount | currency:'TND':'symbol' }}</td>
+                <td>
+                  <span class="badge" [ngClass]="p.status === 'completed' ? 'badge-success' : 'badge-warning'">
+                    {{ p.status }}
+                  </span>
+                </td>
+                <td>{{ p.montant_restant | currency:'TND':'symbol' }}</td>
+                <td>
+                  <ng-container *ngIf="p.tranches?.length > 0; else noPayment">
+                    <div *ngFor="let tranche of p.tranches">
+                      {{ tranche.montant_tranche | currency:'TND':'symbol' }}
+                    </div>
+                  </ng-container>
+                  <ng-template #noPayment>
+                    Aucun paiement effectué
+                  </ng-template>
+                </td>
+                <td>
+                  <div *ngIf="p.tranches?.length > 0; else noDates">
+                    <div *ngFor="let tranche of p.tranches">
+                      {{ tranche.date_depot_tranche | date: 'dd/MM/yyyy' }}
+                    </div>
+                  </div>
+                  <ng-template #noDates>
+                    -
+                  </ng-template>
+                </td>
+                <td>
+                  <button
+                  class="btn btn-primary btn-sm"
+                  [disabled]="p.status === 'completed' || (p.formation.apprenants?.length || 0) < 2"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalPaiement"
+                  (click)="selectedFormationId = p.formation._id"
+                >
+                  {{ p.status === 'completed' ? 'Paiement terminé' : 'Payer maintenant' }}
+                </button>
+                
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <!-- Fin du container principal -->
+
+
+     <ng-container *ngIf="messageInfo; ">
+  <span class="alert alert-warning">
+    {{ messageInfo }}
+  </span>
+</ng-container>
+
+<div *ngIf="messageInfo1">
+  <span class="alert alert-warning">{{ messageInfo1 }}</span>
+</div>
+
+
+
+
+
+
+      
+      
+
+
+    </div>
+  </div>
+</div>
+
+ <!-- Footer -->
+ <footer class="sticky-footer bg-white">
+  <div class="container my-auto">
+    <div class="copyright text-center my-auto">
+      <span>Copyright &copy; Your Website 2021</span>
+    </div>
+  </div>
+</footer>
+<!-- End of Footer -->
+
+
+
+
+
+<!-- MODAL -->
+<div class="modal fade" id="modalPaiement" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content p-3">
+      <div class="modal-header">
+        <h5 class="modal-title">Ajouter une tranche</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+          <label>Montant de la tranche</label>
+          <input
+            type="number"
+            class="form-control"
+            name="montant_tranche"
+            placeholder="Entrer le montant"
+            [(ngModel)]="paymentData.montant_tranche"
+          />
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button
+          class="btn btn-success"
+          (click)="confirmPaiement()"
+        >
+          Confirmer
+        </button>
+        <button class="btn btn-secondary" data-bs-dismiss="modal">
+          Annuler
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,153 @@
+/* ✅ Section principale */
+.profile-section {
+  background: #ffffff;
+  padding: 40px 0;
+}
+
+/* ✅ Titre principal pour Profil + Formations */
+.about-text {
+  flex: 1 1 50%;
+  font-family: 'Georgia', serif;
+  font-size: 1.7rem;
+  color: #6D4C41;
+  line-height: 1.8;
+
+}
+
+.about {
+  font-size: 2.5rem;
+  font-weight: normal;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #6D4C41; 
+}
+
+/* ✅ Sous-texte */
+.section-subtitle {
+  color: #6c757d;
+  font-size: 1rem;
+  text-align: center;
+  margin-bottom: 10px;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.7;
+}
+
+.section-divider {
+  width: 60%; /* ✅ Beaucoup plus long qu'avant */
+  border: 0;
+  border-top: 1px solid #e0e0e0;
+  margin: 1px auto;
+}
+
+
+/* ✅ Carte profil */
+.profile-card {
+  background: #f9f9f9;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+  padding: 35px;
+  transition: transform 0.3s;
+  transform: translateY(-30px); /* Monte la carte de 10px */
+}
+
+
+
+/* ✅ Image profil */
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  border: 4px solid #347a7a;
+  object-fit: cover;
+}
+
+/* ✅ En-tête profil */
+.profile-header h3 {
+  color: #347a7a;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.role-tag {
+  font-size: 14px;
+  color: #999;
+}
+
+/* ✅ Formulaire */
+.form-control {
+  border-radius: 10px;
+  border: 1px solid #ced4da;
+  padding: 10px;
+  font-size: 15px;
+}
+
+/* ✅ Bouton modifier */
+.btn-primary-custom {
+  background: #347a7a;
+  border: none;
+  color: white;
+  padding: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 10px;
+  transition: background 0.3s ease-in-out, transform 0.3s;
+}
+
+.btn-primary-custom:hover {
+  background: #295e5e;
+  transform: translateY(-2px);
+}
+
+/* ✅ Grille formations alignées à gauche */
+.related-formations .row {
+  justify-content: flex-start; /* ⬅️ important : plus 'center' */
+  margin-top: 40px;
+}
+
+
+/* ✅ Image formations */
+.formation-img {
+  height: 160px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+/* ✅ Bouton formations */
+.btn-primary {
+  background-color: #347a7a;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #295e5e;
+}
+
+
+
+
+/* ✅ Carte formation très claire */
+.related-formations .card {
+  background: #f5f3f0; /* blanc très léger */
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+/* ✅ Animation au survol */
+.related-formations .card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* ombre un peu plus grande au hover */
+}
+
+
+.avatar-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

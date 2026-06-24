@@ -1,0 +1,173 @@
+/* Container général */
+.container {
+  max-width: 1200px; /* ajouté px manquant */
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+/* Card principale */
+.formation-details {
+  border: none;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
+  overflow: hidden;
+  background-color: #fff;
+  transform: translateY(-60px); /* Monte la carte de 10px */
+}
+
+/* Image */
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 80%;
+  max-width: 500px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Détails */
+.card-body {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+/* Titre Formation */
+.about-title {
+  font-size: 2.5rem;
+  font-weight: 500;
+  font-family: 'Georgia', serif;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Formateur */
+.text-muted {
+  font-size: 1.1rem;
+  color: #7a7a7a;
+  margin-bottom: 16px;
+}
+
+.likes-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 5px;
+  margin-left: 60px; /* décalage global à droite */
+}
+
+.likes-count {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #555;
+}
+
+.heart {
+  color: #e25555;
+  font-size: 30px;
+}
+
+/* Description */
+.description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #5a5a5a;
+  margin-bottom: 30px;
+}
+
+/* Prix */
+.price {
+  font-size: 2rem;
+  font-weight: 600;
+  color: #b1835f;
+  margin-bottom: 30px;
+}
+
+/* Boutons */
+.btn-primary, .btn-danger {
+  width: 100%;
+  padding: 14px;
+  font-size: 1.1rem;
+  border-radius: 10px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary:focus:active {
+  background-color: #b99876;
+  box-shadow: none;
+  outline: none;
+  border: none;
+}
+
+.btn-primary {
+  background-color: #b99876;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #a07f5e;
+}
+
+.btn-danger {
+  background-color: #e74c3c;
+  border: none;
+}
+
+.btn-danger:hover {
+  background-color: #c0392b;
+}
+
+/* Modal */
+.modal-content {
+  border-radius: 12px;
+  font-family: 'Poppins', 'Helvetica Neue', sans-serif;
+}
+
+.modal-title {
+  font-weight: 600;
+}
+
+.modal-body p, .modal-body li {
+  font-size: 1rem;
+}
+
+.subtitle {
+  font-size: 17px;
+  font-weight: 600;
+  color: #6D4C41;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+}
+
+.sub {
+  font-size: 17px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  margin-bottom: 10px;
+  margin-left: 60px; /* 👈 décalage vers la droite */
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .card-body {
+    padding: 20px;
+  }
+  .about-title {
+    font-size: 2rem;
+  }
+}

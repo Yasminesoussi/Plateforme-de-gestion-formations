@@ -1,0 +1,14 @@
+.border-left-nude {
+    border-left: 0.25rem solid #e8cfc2 !important; /* couleur nude */
+  }
+  .text-nude {
+    color: #b08968 !important; /* texte nude */
+  }
+  .btn-outline-nude {
+    color: #b08968;
+    border-color: #b08968;
+  }
+  .btn-outline-nude:hover {
+    background-color: #b08968;
+    color: white;
+  }

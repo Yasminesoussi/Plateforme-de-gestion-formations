@@ -1,0 +1,130 @@
+/* Titres principaux */
+h2, h4 {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: bold;
+}
+
+/* Section cartes */
+.card {
+  background-color: #ffffff;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  border: none;
+}
+
+
+.about-text {
+  flex: 1 1 50%;
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  color: #333333;
+  line-height: 1.8;
+}
+
+.about-title {
+  font-size: 2.5rem;
+  font-weight: normal;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #6D4C41; 
+}
+
+/* Bordures latérales colorées */
+.card[style*="border-left"] {
+  border-left-width: 6px !important;
+}
+
+/* Détails de paiement */
+details {
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 15px;
+  background-color: #f9f9f9;
+}
+
+details summary {
+  font-size: 1.1rem;
+  color: #347a7a;
+  font-weight: 600;
+}
+
+/* Tableau */
+.table {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400; /* plus fin */
+  border-collapse: collapse;
+
+}
+
+.table thead {
+ 
+  font-weight: 600; /* un peu plus marqué pour les titres seulement */
+}
+
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #7d624c; /* Bordure nude douce */
+}
+
+
+
+.table td,
+.table th {
+  padding: 10px 12px;
+  vertical-align: middle;
+  font-weight: 400; /* texte régulier dans le corps */
+  color: #7f624b;
+}
+
+/* En-têtes */
+.table th {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Badges statut */
+.badge-success {
+  background-color: #28a745;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+.badge-warning {
+  background-color: #ffc107;
+  color: #000;
+  padding: 6px 12px;
+  border-radius: 10px;
+}
+
+/* Alerts */
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+  font-weight: 500;
+  border: 1px solid #ffeeba;
+  border-radius: 10px;
+  padding: 10px 20px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  details .row > div {
+    margin-bottom: 10px;
+  }
+
+  .table-responsive {
+    font-size: 0.9rem;
+  }
+}
+
+/* Bordure et ombrage doux autour du tableau */
+.table-responsive {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}

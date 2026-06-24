@@ -1,0 +1,50 @@
+<app-header-user></app-header-user>
+
+<br><br>
+<h1 class="about-title">Détails Formateur</h1>
+
+<!-- Formations affectées -->
+<div *ngIf="formationsAffectees.length > 0" class="formateur-formations">
+  <h2 class="section-title"><span class="dot">•</span> Formations affectées</h2>
+  <ul>
+    <li *ngFor="let f of formationsAffectees">{{ f.name }}</li>
+  </ul>
+</div>
+
+<div *ngIf="formationsAffectees.length === 0" class="formateur-formations-empty">
+  <p>Aucune formation n’a été affectée à ce formateur.</p>
+</div>
+
+<!-- Sessions de formation -->
+
+<h2 class="left-align"><span class="dot">•</span> Sessions de formation du formateur</h2>
+
+<div class="table-wrapper">
+  <div class="table-container">
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Sessions</th>
+          <th>Formation</th>
+          <th>Status</th>
+          <th>Date début</th>
+          <th>Date fin</th>
+          <th>Salle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let fr of formateur; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ fr.formation.name }}</td>
+          <td>{{ fr.status }}</td>
+          <td>{{ formatDate(fr.startDate) }}</td>
+          <td>{{ formatDate(fr.endDate) }}</td>
+          <td>{{ fr.salle.nom || 'Non affectée' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<br><br><br><br><br>
+<app-footer-user></app-footer-user>

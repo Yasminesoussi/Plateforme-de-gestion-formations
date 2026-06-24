@@ -1,0 +1,296 @@
+
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        <app-side-bar></app-side-bar>
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+
+              <app-header></app-header>
+                <!-- End of Topbar -->
+
+                <!-- Begin Page Content -->
+                <div class="container-fluid">
+
+                    <!-- Page Heading -->
+                    <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+                       
+                    </div>
+
+                    <!-- Content Row -->
+                    <div class="row">
+
+
+
+<!-- Carte Formateurs -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-nude shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-md font-weight-bold text-nude text-uppercase mb-1" style="font-size: 1.2rem;">
+              Formateurs
+            </div>
+            <div class="h4 mb-0 font-weight-bold text-gray-800">
+              {{ formateurCount }}
+            </div>
+            <a routerLink="/formateurs" class="btn btn-sm btn-outline-nude mt-2">
+              En savoir plus
+            </a>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-chalkboard-teacher fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                       <!-- Carte Apprenants -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-success shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <!-- Titre plus grand -->
+            <div class="h6 font-weight-bold text-success text-uppercase mb-2" style="font-size: 1.2rem;">
+              Apprenants
+            </div>
+  
+            <!-- Nombre -->
+            <div class="h4 mb-2 font-weight-bold text-gray-800">
+              {{ apprenantCount }}
+            </div>
+  
+            <!-- Bouton En savoir plus -->
+            <a routerLink="/apprenants" class="btn btn-sm btn-outline-success mt-2">
+              En savoir plus
+            </a>
+          </div>
+  
+          <!-- Icône -->
+          <div class="col-auto">
+            <i class="fas fa-users fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+                          
+
+
+                            <!-- Carte Formations -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-warning shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-md font-weight-bold text-warning text-uppercase mb-1" style="font-size: 1.2rem;">
+              Formations
+            </div>
+            <div class="h4 mb-0 font-weight-bold text-gray-800">
+              {{ formationCount }}
+            </div>
+            <a routerLink="/formations" class="btn btn-sm btn-outline-warning mt-2">
+              En savoir plus
+            </a>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                          <!-- Carte Catégories -->
+<div class="col-xl-3 col-md-6 mb-4">
+    <div class="card border-left-danger shadow h-100 py-2">
+      <div class="card-body">
+        <div class="row no-gutters align-items-center">
+          <div class="col mr-2">
+            <div class="text-md font-weight-bold text-danger text-uppercase mb-1" style="font-size: 1.2rem;">
+              Catégories
+            </div>
+            <div class="h4 mb-0 font-weight-bold text-gray-800">
+              {{ categoryCount }}
+            </div>
+            <a routerLink="/categorys" class="btn btn-sm btn-outline-danger mt-2">
+              En savoir plus
+            </a>
+          </div>
+          <div class="col-auto">
+            <i class="fas fa-list fa-2x text-gray-300"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+     
+
+<!-- Carte Session -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-info shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-md font-weight-bold text-info text-uppercase mb-1" style="font-size: 1.2rem;">
+            Sessions
+          </div>
+          <div class="h4 mb-0 font-weight-bold text-gray-800">
+            {{ SessionCount }}
+          </div>
+          <a routerLink="/sessions-formations" class="btn btn-sm btn-outline-info mt-2">
+            En savoir plus
+          </a>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-calendar-alt fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Carte Salle -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-primary shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-md font-weight-bold text-primary text-uppercase mb-1" style="font-size: 1.2rem;">
+            Salles
+          </div>
+          <div class="h4 mb-0 font-weight-bold text-gray-800">
+            {{ salleCount }}
+          </div>
+          <a routerLink="/sessions-formations" class="btn btn-sm btn-outline-primary mt-2">
+            En savoir plus
+          </a>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-door-open fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Carte avis -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-secondary shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-md font-weight-bold text-secondary text-uppercase mb-1" style="font-size: 1.2rem;">
+            Avis
+          </div>
+          <div class="h4 mb-0 font-weight-bold text-gray-800">
+            {{ avisCount }}
+          </div>
+          <a routerLink="/sessions-formations" class="btn btn-sm btn-outline-secondary mt-2">
+            En savoir plus
+          </a>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-star fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- Carte certificat -->
+<div class="col-xl-3 col-md-6 mb-4">
+  <div class="card border-left-dark shadow h-100 py-2">
+    <div class="card-body">
+      <div class="row no-gutters align-items-center">
+        <div class="col mr-2">
+          <div class="text-md font-weight-bold text-dark text-uppercase mb-1" style="font-size: 1.2rem;">
+            Certificats
+          </div>
+          <div class="h4 mb-0 font-weight-bold text-gray-800">
+            {{ certificatCount }}
+          </div>
+          <a routerLink="/sessions-formations" class="btn btn-sm btn-outline-dark mt-2">
+            En savoir plus
+          </a>
+        </div>
+        <div class="col-auto">
+          <i class="fas fa-medal fa-2x text-gray-300"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+                        
+                    </div>
+
+
+                </div>
+                <!-- /.container-fluid -->
+
+            </div>
+            <!-- End of Main Content -->
+
+
+
+
+
+
+
+            <!-- Footer -->
+            <footer >
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                      <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
+
+        </div>
+        <!-- End of Content Wrapper -->
+
+    </div>
+    <!-- End of Page Wrapper -->
+
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+
+    <!-- Logout Modal-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                    <a class="btn btn-primary" href="login.html">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>

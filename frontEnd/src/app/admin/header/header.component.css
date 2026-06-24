@@ -1,0 +1,16 @@
+/* Appliquer un fond beige clair à l'icône de recherche */
+.custom-search button {
+    background-color: #f5f5dc; /* Beige clair */
+    border: 1px solid #e0d5b8; /* Bordure légèrement plus foncée */
+    border-radius: 50%; /* Bord arrondi pour l'icône */
+}
+
+/* Change la couleur de l'icône à gris foncé lorsque l'icône de recherche est en beige clair */
+.custom-search button i {
+    color: #5a5a5a; /* Gris foncé pour l'icône */
+}
+
+/* Optionnel: Change la couleur de l'icône au survol */
+.custom-search button:hover i {
+    color: #8b6f47; /* Marron doux au survol */
+}

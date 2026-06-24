@@ -1,0 +1,87 @@
+/* ======= HEADER ======= */
+.navbar {
+  background: #ffffff;
+  padding: 0.8rem 2rem;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-radius: 0 0 20px 20px;
+  position: static; /* Laisser la navbar normale, sans fixation */
+  z-index: 1000; /* S'assurer que la navbar soit bien au-dessus des autres éléments */
+}
+
+.navbar-brand img {
+  height: 225px;
+  width: auto;
+  margin-top: 60px;
+}
+
+
+  .navbar-brand h2 {
+    font-weight: 700;
+    color:  #347a7a !important;
+    font-size: 1.8rem;
+  }
+  
+  .navbar .nav-link {
+    font-weight: 500;
+    color: #333;
+    margin: 0 10px;
+    position: relative;
+    transition: 0.3s ease;
+  }
+  
+  .navbar .nav-link:hover,
+  .navbar .nav-link.active {
+    color:  #347a7a;
+  }
+  
+  .navbar .nav-link::after {
+    content: "";
+    position: absolute;
+    width: 0%;
+    height: 2px;
+    bottom: -4px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #347a7a;
+    transition: 0.3s ease;
+  }
+  
+  .navbar .nav-link:hover::after,
+  .navbar .nav-link.active::after {
+    width: 80%;
+  }
+  
+  .navbar-toggler {
+    border: none;
+    outline: none;
+  }
+  
+  .navbar-toggler-icon {
+    filter: brightness(0.3);
+  }
+  
+  .dropdown-menu {
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    
+  }
+  
+  .dropdown-item {
+    transition: 0.2s;
+  }
+  
+  .dropdown-item:hover {
+    background-color:  #347a7a;
+    color: white;
+  }
+
+  .dropdown-menu .dropdown-item.active,
+.dropdown-menu .dropdown-item.router-link-active {
+  background-color: #347a7a !important;
+  color: white !important;
+}
+
+
+
+  

@@ -1,0 +1,152 @@
+/* Style du bouton */
+.btn-soft-primary {
+    background-color: #a0c4ff; /* Une teinte plus douce de bleu */
+    color: #333; /* Texte plus foncé pour le contraste */
+    border-radius: 12px; /* Coins arrondis pour un look plus moderne */
+    padding: 8px 20px; /* Un peu plus d'espace autour du texte */
+    font-weight: 500; /* Police un peu plus fine */
+    border: 1px solid #8ab8ff; /* Bordure légère pour faire ressortir le bouton */
+}
+
+.btn-soft-primary:hover {
+    background-color: #7aabf7; /* Une teinte un peu plus foncée lors du survol */
+    border-color: #659bff; /* Border également ajustée lors du survol */
+    color: #fff; /* Texte en blanc pour un bon contraste */
+}
+
+.btn-soft-primary i {
+    margin-right: 8px; /* Un petit écart entre l'icône et le texte */
+}
+
+
+/* Delete Button Style */
+.btn-delete {
+    background-color: #f5b7b1;  /* Rose doux mais contrasté */
+    color: #c0392b;  /* Rouge plus foncé pour le texte */
+    border: 1px solid #e74c3c; /* Bordure rouge plus marquée */
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .btn-delete:hover {
+    background-color: #f2a8a1; /* Rose plus prononcé au survol */
+    transform: translateY(-3px); /* Effet de flottement plus accentué */
+  }
+  
+  .btn-delete i {
+    font-size: 18px;
+    color: #c0392b;  /* Couleur de texte rouge plus foncé */
+    transition: color 0.3s ease;
+  }
+  
+  .btn-delete:hover i {
+    color: #a83226; /* L'icône devient plus foncée au survol */
+  }
+
+  .btn-download {
+    background: linear-gradient(135deg, #e0c3fc, #8ec5fc); /* Dégradé nude et bleu doux */
+    color: #444; /* Couleur foncée élégante */
+    border: none;
+    padding: 10px;
+    border-radius: 50%;
+    font-size: 18px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .btn-download:hover {
+    background: linear-gradient(135deg, #d4a5ff, #72b2ff); /* Teinte plus intense au survol */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  .btn-download i {
+    font-size: 20px;
+    transition: transform 0.3s ease;
+  }
+  
+  .btn-download:hover i {
+    transform: scale(1.1);
+  }
+  
+
+
+  .formation-container {
+    display: flex;
+    flex-direction: column; /* les items l'un en dessous de l'autre */
+    gap: 8px; /* espace entre chaque formation */
+  }
+  
+  .formation-item {
+    padding: 8px 12px;
+    background-color: #e0f7fa; /* bleu très clair */
+    color: #006064; /* bleu foncé */
+    border-radius: 6px;
+    font-weight: 500;
+    width: fit-content;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+  
+  .no-formation {
+    color: #999;
+    font-style: italic;
+    padding: 8px;
+  }
+
+
+
+
+  /* Bouton général */
+.btn {
+  display: inline-block;
+  font-size: 16px;
+  padding: 10px 20px;
+  border: 2px solid transparent;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+/* Bouton actif */
+.btn-active {
+  background-color: #4caf50; /* Vert élégant */
+  color: #ffffff;
+  border-color: #4caf50;
+}
+
+.btn-active:hover {
+  background-color: #45a049; /* Vert plus foncé */
+  border-color: #45a049;
+  transform: scale(1.05);
+}
+
+/* Bouton inactif */
+.btn-inactive {
+  background-color: #d9534f; /* Rouge élégant */
+  color: #ffffff;
+  border-color: #d9534f;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* États désactivés */
+button:disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  transform: none;
+}
+
+/* Animation */
+.btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-lg {
+  font-size: 18px;
+  padding: 12px 30px;
+}

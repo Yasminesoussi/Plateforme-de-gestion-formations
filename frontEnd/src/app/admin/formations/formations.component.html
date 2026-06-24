@@ -1,0 +1,448 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+    <app-side-bar></app-side-bar>
+    <!-- Content Wrapper -->
+    <div id="content-wrapper" class="d-flex flex-column">
+      <!-- Main Content -->
+      <div id="content">
+        <app-header></app-header>
+        <!-- End of Topbar -->
+  
+        <!-- Begin Page Content -->
+        <div class="container-fluid">
+          <!-- Page Heading -->
+          
+            <!-- Page Heading -->
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+              <h1 class="h3 mb-0 text-gray-800">Formations</h1>
+              
+              <a href="#" class="btn btn-sm btn-soft-primary shadow-sm"
+              data-bs-toggle="modal" data-bs-target="#exampleModal">
+             <i class="fas fa-plus fa-sm text-white-50"></i> Ajouter Formation
+           </a>
+           
+              
+            
+            </div>
+            <div class="item-container mt-3">
+              Items Per page:
+              <select (change)="handlePageSizeChange($event)">
+              <option *ngFor = "let size of pageSizes" [ngValue]="size">
+                  {{size}}
+              </option></select>
+            </div>
+          <!--Data Table-->
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">
+              
+              </h6>
+            </div>
+
+          
+            <div class="card-body">
+              <div class="table-responsive">
+
+
+
+                <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Prix</th>
+                    <th>Apprenants</th>
+                    <th>Formateur</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+              
+                <tbody>
+                  <tr *ngFor="let for of formations | paginate : {
+                                itemsPerPage: pageSize,
+                                currentPage: page,
+                                totalItems: count
+                              }; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ for.name }}</td>
+                    <td>{{ for.description }}</td>
+                    <td>{{ for.prix }}</td>
+                    <td>
+                      <span *ngFor="let apprenant of for.apprenants; let last = last">
+                        {{ apprenant.name }}<span *ngIf="!last">, </span>
+                      </span>
+                    </td>
+                    <td>{{ for.formateur.name || 'Non spécifié' }}</td>
+
+                    <td>{{ for.startDate | date: 'short' }}</td>
+                    <td>{{ for.endDate | date: 'short' }}</td>
+                    
+                    <td>
+                      <!-- Bouton Modifier -->
+                      <button type="button" class="btn btn-edit rounded-pill" (click)="getByIdFormation(for._id)" data-bs-toggle="modal" data-bs-target="#editFormationModal">
+                        <i class="fas fa-pencil-alt"></i>
+                      </button>
+              
+                      <!-- Bouton Supprimer -->
+                      <button type="button" (click)="confirmDelete(for._id)" class="btn btn-delete rounded-pill">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+              
+
+
+                <div class="pagination-container">
+                  <pagination-controls previousLabel="Prev" nextLbel="Next" [responsive]="true"
+                  (pageChange)="handlePageChange($event)">
+                  </pagination-controls>
+                  
+                  
+
+                </div>
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /.container-fluid -->
+      </div>
+      <!-- End of Main Content -->
+  
+     <!-- Footer -->
+    <footer >
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+    </div>
+    <!-- End of Content Wrapper -->
+  </div>
+  <!-- End of Page Wrapper -->
+  
+  <!-- Scroll to Top Button-->
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+ 
+<!--Modal d'ajout-->
+
+<form [formGroup]="formationForm" (ngSubmit)="onSubmit()">
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Formation</h1>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Name Field -->
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              formControlName="name"
+              placeholder="Enter formation name"
+            />
+            <div class="alert alert-danger" role="alert" *ngIf="formationForm.controls['name'].errors && formationForm.controls['name'].touched">
+              <small *ngIf="formationForm.controls['name'].errors['required']">Formation name is required.</small>
+            </div>
+          </div>
+
+          <!-- Category Field -->
+          <div class="mb-3">
+            <label for="category" class="col-form-label">Category:</label>
+            <select class="custom-select" formControlName="category" >
+              <option value="" disabled>Select a category</option>
+              <option  *ngFor="let category of categories" [value]="category._id">{{ category.name }}</option>
+              <option *ngIf="categories.length === 0" disabled>No categories available</option>
+            </select>
+          </div>
+
+          <!-- Description Field -->
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description:</label>
+            <textarea class="form-control" name="description" formControlName="description" placeholder="Enter formation description"></textarea>
+            <div *ngIf="formationForm.controls['description'].errors && formationForm.controls['description'].touched">
+              <small *ngIf="formationForm.controls['description'].errors['required']">Training description is required.</small>
+            </div>
+          </div>
+
+          <!-- Prix Field -->
+          <div class="mb-3">
+            <label for="prix" class="col-form-label">Prix:</label>
+            <input type="text" class="form-control" name="prix" formControlName="prix" placeholder="Enter formation price" />
+            <div *ngIf="formationForm.controls['prix'].errors && formationForm.controls['prix'].touched">
+              <small *ngIf="formationForm.controls['prix'].errors['required']">Training price is required.</small>
+            </div>
+          </div>
+
+
+           <!-- level Field -->
+        <!-- level Field -->
+<div class="mb-3">
+  <label for="level" class="col-form-label">Level:</label>
+  <select class="form-control" name="level" formControlName="level">
+    <option value="">-- Sélectionnez un niveau --</option>
+    <option value="Tous les niveaux">Tous les niveaux</option>
+    <option value="Débutant">Débutant</option>
+    <option value="Intermédiaire">Intermédiaire</option>
+    <option value="Confirmé">Confirmé</option>
+  </select>
+  <div *ngIf="formationForm.controls['level'].errors && formationForm.controls['level'].touched">
+    <small *ngIf="formationForm.controls['level'].errors['required']">
+      Training level is required.
+    </small>
+  </div>
+</div>
+
+
+
+<!-- Start Date Field -->
+<div class="mb-3">
+  <label for="startDate" class="col-form-label">Start Date:</label>
+  <input
+    type="datetime-local"
+    class="form-control"
+    name="startDate"
+    formControlName="startDate"
+  />
+  <div *ngIf="formationForm.controls['startDate'].errors && formationForm.controls['startDate'].touched">
+    <small *ngIf="formationForm.controls['startDate'].errors['required']">
+      Start date is required.
+    </small>
+  </div>
+</div>
+
+<!-- End Date Field -->
+<div class="mb-3">
+  <label for="endDate" class="col-form-label">End Date:</label>
+  <input
+    type="datetime-local"
+    class="form-control"
+    name="endDate"
+    formControlName="endDate"
+  />
+  <div *ngIf="formationForm.controls['endDate'].errors && formationForm.controls['endDate'].touched">
+    <small *ngIf="formationForm.controls['endDate'].errors['required']">
+      End date is required.
+    </small>
+  </div>
+</div>
+
+
+
+
+
+              <!-- tags Field -->
+              <div class="mb-3">
+                <label for="tags" class="col-form-label">Tags:</label>
+                <input type="text" class="form-control" name="tags" formControlName="tags" placeholder="Enter tags" />
+                <div *ngIf="formationForm.controls['tags'].errors && formationForm.controls['tags'].touched">
+                  <small *ngIf="formationForm.controls['tags'].errors['required']">Training tags is required.</small>
+                </div>
+              </div>
+
+
+
+
+          
+          <!-- Image Field -->
+<div class="mb-3">
+  <label for="image" class="col-form-label">Image:</label>
+  <input
+    type="file"
+    class="form-control"
+    name="image"
+    (change)="onFileSelected($event)"
+  />
+</div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit"  class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+
+<!-- Modal de modification -->
+<form [formGroup]="formationForm" (ngSubmit)="updateFormation()">
+  <div
+    class="modal fade"
+    id="editFormationModal"
+    tabindex="-1"
+    aria-labelledby="editFormationLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="editFormationLabel">
+            Modifier Formation
+          </h1>
+          <button
+            type="button"
+            class="close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Stocke l'ID de la formation -->
+          <input type="hidden" formControlName="_id" />
+
+          <!-- Nom -->
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Nom:</label>
+            <input type="text" class="form-control" formControlName="name" />
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="formationForm.get('name')?.invalid && formationForm.get('name')?.touched"
+            >
+              <small *ngIf="formationForm.get('name')?.errors?.['required']">
+                Le nom de la formation est requis.
+              </small>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description:</label>
+            <textarea class="form-control" formControlName="description"></textarea>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="formationForm.get('description')?.invalid && formationForm.get('description')?.touched"
+            >
+              <small *ngIf="formationForm.get('description')?.errors?.['required']">
+                La description de la formation est requise.
+              </small>
+            </div>
+          </div>
+
+          <!-- Catégorie -->
+          <div class="mb-3">
+            <label for="category" class="col-form-label">Catégorie:</label>
+            <select class="form-control" formControlName="category">
+              <option value="" disabled>Sélectionnez une catégorie</option>
+              <option *ngFor="let cat of categories" [value]="cat._id">
+                {{ cat.name }}
+              </option>
+            </select>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="formationForm.get('category')?.invalid && formationForm.get('category')?.touched"
+            >
+              <small *ngIf="formationForm.get('category')?.errors?.['required']">
+                La catégorie est requise.
+              </small>
+            </div>
+          </div>
+
+          <!-- Prix -->
+          <div class="mb-3">
+            <label for="prix" class="col-form-label">Prix:</label>
+            <input type="number" class="form-control" formControlName="prix" />
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="formationForm.get('prix')?.invalid && formationForm.get('prix')?.touched"
+            >
+              <small *ngIf="formationForm.get('prix')?.errors?.['required']">
+                Le prix est requis.
+              </small>
+              <small *ngIf="formationForm.get('prix')?.errors?.['min']">
+                Le prix doit être supérieur à 0.
+              </small>
+            </div>
+          </div>
+
+
+
+          <!-- Start Date Field -->
+<div class="mb-3">
+  <label for="startDate" class="col-form-label">Start Date:</label>
+  <input
+    type="datetime-local"
+    class="form-control"
+    name="startDate"
+    formControlName="startDate"
+  />
+  <div *ngIf="formationForm.controls['startDate'].errors && formationForm.controls['startDate'].touched">
+    <small *ngIf="formationForm.controls['startDate'].errors['required']">
+      Start date is required.
+    </small>
+  </div>
+</div>
+
+<!-- End Date Field -->
+<div class="mb-3">
+  <label for="endDate" class="col-form-label">End Date:</label>
+  <input
+    type="datetime-local"
+    class="form-control"
+    name="endDate"
+    formControlName="endDate"
+  />
+  <div *ngIf="formationForm.controls['endDate'].errors && formationForm.controls['endDate'].touched">
+    <small *ngIf="formationForm.controls['endDate'].errors['required']">
+      End date is required.
+    </small>
+  </div>
+</div>
+
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Fermer
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Modifier
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+  
+
+  

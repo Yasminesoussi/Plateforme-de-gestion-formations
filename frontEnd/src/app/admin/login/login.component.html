@@ -1,0 +1,61 @@
+<div class="container">
+  <!-- Outer Row -->
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <div class="card">
+        <div class="row no-gutters">
+          <!-- Left Side: Image -->
+          <div class="col-lg-6 bg-image">
+            <img src="../../../assets/login.jpg" alt="Login Image" class="full-image" />
+          </div>
+
+          <!-- Right Side: Form -->
+          <div class="col-lg-6 d-flex align-items-center justify-content-center bg-white">
+            <div class="form-wrapper">
+              <div class="text-center">
+                <div class="logo">
+                  <img src="../../../assets/user-style/img/maison.jpg" alt="Logo" class="logo-img">
+                </div>
+                <h1 class="about-title">Login Admin</h1>
+              </div>
+              <form class="user" name="form" #f="ngForm" (ngSubmit)="login()">
+                <div class="form-group">
+                  <label for="email">Email: <span class="required"></span></label>
+                  <input
+                    type="email"
+                    class="form-control form-control-user"
+                    id="exampleInputEmail"
+                    placeholder="Enter Email Address..."
+                    name="email"
+                    [(ngModel)]="form.email"
+                    #email="ngModel"
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="password">Password: <span class="required"></span></label>
+                  <input
+                    type="password"
+                    class="form-control form-control-user"
+                    id="exampleInputPassword"
+                    placeholder="Password"
+                    name="password"
+                    [(ngModel)]="form.password"
+                    #password="ngModel"
+                  />
+                </div>
+                <div class="form-group checkbox-wrapper">
+                  <input type="checkbox" class="custom-control-input" id="customCheck" />
+                  <label class="custom-control-label" for="customCheck">Remember Me</label>
+                </div>
+                <button class="btn btn-user btn-block" type="submit">Login</button>
+              </form>
+              <hr />
+              
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

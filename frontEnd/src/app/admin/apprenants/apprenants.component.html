@@ -1,0 +1,174 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header></app-header>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Apprenants</h1>
+          
+         
+        
+        </div>
+
+
+
+        <div class="mb-3">
+          <input
+            type="text"
+            [(ngModel)]="searchTerm"
+            placeholder="Rechercher par nom"
+            (input)="onSearch()"
+            class="form-control"
+          />
+        </div>
+        
+      
+        
+        <!--Data Table-->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+             
+            </h6>
+          </div>
+
+          
+
+          <div class="card-body">
+
+            <div *ngIf="apprenants.length === 0" class="alert alert-info">
+              Aucun apprenant trouvé.
+            </div>
+
+            <div class="table-responsive" *ngIf="apprenants.length > 0">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Telephone</th>
+                    <th>Adresse</th>
+                    <th>Status</th>
+                    <th>Formations</th>
+                    <th>Payment</th>
+                   
+                   
+                  </tr>
+                </thead>
+               
+                <tbody *ngFor=" let app of apprenants ; let i=index ">
+       
+
+                  <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{app.name}}</td>
+                    <td>{{app.email}}</td>
+                    <td>{{app.telephone}}</td>
+                    <td>{{app.adresse}}</td>
+
+                    <td class="status-label" [ngClass]="{'active-status': app.status === 'active'}">
+                      {{app.status}}
+                    </td>
+
+
+
+                    <td>
+                      <div  class="formation-container">
+                        <div *ngFor="let formation of app.formations" class="formation-item">
+                          {{ formation.name }}
+                        </div>
+                      </div>
+
+                      <div *ngIf="!app.formations || app.formations.length === 0" class="no-formation" >
+                        Aucune formation
+                      </div>
+
+                      
+                    </td>
+
+
+                    <td class="status-label" routerLink="/payment/{{app._id}}">
+                      <i class="fas fa-money-check-alt pay-icon" title="Payer maintenant"></i>
+                    </td>
+
+                    
+                  
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer >
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select "Logout" below if you are ready to end your current session.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+          Cancel
+        </button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>

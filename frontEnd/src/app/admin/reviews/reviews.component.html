@@ -1,0 +1,88 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header></app-header>
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Likes</h1>
+        </div>
+
+        <!-- Champ de filtre -->
+        <div class="form-group mb-3">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Filtrer par nom de formation..."
+            [(ngModel)]="searchTerm"
+          />
+        </div>
+
+        <!-- Data Table -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des formations likées</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Formation</th>
+                    <th>Liked by</th>
+                    <th>Nombre de likes</th>
+                  
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <tr *ngFor="let review of filteredReviews">
+                    <td>{{ review.id }}</td>
+                    <td>{{ review.formation }}</td>
+                    <td class="formation-container formation-item">
+                      {{ review.likedBy }}
+                    </td>
+                    
+                    <td>{{ review.likesCount }}</td>
+               
+                  </tr>
+                </tbody>
+              </table>
+
+              <div *ngIf="filteredReviews.length === 0" class="text-center mt-3">
+                <p>Aucune formation trouvée pour "{{ searchTerm }}"</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer >
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->

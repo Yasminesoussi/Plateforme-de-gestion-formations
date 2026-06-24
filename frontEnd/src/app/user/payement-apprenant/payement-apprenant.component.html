@@ -1,0 +1,108 @@
+<!-- Page Wrapper -->
+<app-header-user></app-header-user>
+
+<div id="wrapper">
+
+  <!-- Contenu principal stylé comme 'Profil' -->
+  <div class="container mt-5">
+    <div class="text-center mb-5">
+      <h1 class="about-title">Paiement</h1>
+    </div>
+
+    <!-- Historique de Paiement -->
+    <div class="card shadow mb-5 p-4" style="border-left: 5px solid #6D4C41;">
+      <h4 class="about-text" style="color: #6D4C41;">Historique</h4>
+
+      <div *ngIf="showError" class="alert alert-warning alert-dismissible fade show">
+        {{ errorMessage }}
+        <button type="button" class="btn-close" (click)="showError = false"></button>
+      </div>
+
+      <div *ngFor="let p of payment" class="mb-4">
+        <details class="border rounded p-3">
+          <summary class="fw-semibold" style="color: #347a7a;">Formation : {{ p.formation?.name }}</summary>
+          <div class="row mt-3 text-center">
+            <div class="col-md-4">
+              <div class="fw-bold" style="color: #347a7a;">Montant total</div>
+              <div>{{ p.totalAmount | currency:'TND':'symbol' }}</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-bold" style="color: #347a7a;">Montant payé</div>
+              <div>{{ getTotalTranches(p) | currency:'TND':'symbol' }}</div>
+            </div>
+            <div class="col-md-4">
+              <div class="fw-bold" style="color: #347a7a;">Reste à payer</div>
+              <div>{{ p.montant_restant | currency:'TND':'symbol' }}</div>
+            </div>
+          </div>
+        </details>
+      </div>
+    </div>
+
+    <!-- Échéancier -->
+    <div class="card shadow p-4" style="border-left: 5px solid #6D4C41;">
+      <h4 class="about-text" style="color: #6D4C41;">Échéancier</h4>
+
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle text-center">
+          <thead >
+            <tr>
+              <th>Apprenant</th>
+              <th>Formation</th>
+              <th>Total</th>
+              <th>Statut</th>
+              <th>Montant Restant</th>
+              <th>Montants Payés</th>
+              <th>Dates de Paiement</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let p of payment">
+              <td>{{ p.apprenant?.name }}</td>
+              <td>{{ p.formation?.name }}</td>
+              <td>{{ p.totalAmount | currency:'TND':'symbol' }}</td>
+              <td>
+                <span class="badge" [ngClass]="p.status === 'completed' ? 'bg-success' : 'bg-warning text-dark'">
+                  {{ p.status }}
+                </span>
+              </td>
+              <td>{{ p.montant_restant | currency:'TND':'symbol' }}</td>
+              <td>
+                <ng-container *ngIf="p.tranches?.length > 0; else noPayment">
+                  <div *ngFor="let tranche of p.tranches">
+                    {{ tranche.montant_tranche | currency:'TND':'symbol' }}
+                  </div>
+                </ng-container>
+                <ng-template #noPayment>Aucun paiement effectué</ng-template>
+              </td>
+              <td>
+                <ng-container *ngIf="p.tranches?.length > 0; else noDates">
+                  <div *ngFor="let tranche of p.tranches">
+                    {{ tranche.date_depot_tranche | date: 'dd/MM/yyyy' }}
+                  </div>
+                </ng-container>
+                <ng-template #noDates>-</ng-template>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Messages d'information -->
+    <div class="mt-4">
+      <ng-container *ngIf="messageInfo">
+        <div class="alert alert-warning text-center">{{ messageInfo }}</div>
+      </ng-container>
+      <div *ngIf="messageInfo1" class="alert alert-warning text-center">{{ messageInfo1 }}</div>
+    </div>
+  </div>
+
+</div>
+
+
+<br>
+
+
+<app-footer-user></app-footer-user>
+<!-- End of Footer -->

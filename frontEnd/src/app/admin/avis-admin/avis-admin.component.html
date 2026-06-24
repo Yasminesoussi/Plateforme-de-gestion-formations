@@ -1,0 +1,110 @@
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+  <div id="content-wrapper" class="d-flex flex-column">
+    <div id="content">
+      <app-header></app-header>
+      <div class="container-fluid">
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Gestion des Avis</h1>
+        </div>
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des avis</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Utilisateur</th>
+                    <th>Role</th>
+                    <th>Titre</th>
+                    <th>Contenu</th>
+                    <th>Date Expérience</th>
+                    <th>Note</th>
+                    <th>Réponse</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let avis of avisList ; let i=index">
+                    <td>{{i+1}}</td>
+                    <td>{{ avis.user?.name  || 'Inconnu' }}</td>
+                    <td>{{ avis.user?.role  || 'Inconnu'}}</td>
+                    <td>{{ avis.titre }}</td>
+                    <td>{{ avis.contenu }}</td>
+                    <td>{{ avis.dateExperience | date }}</td>
+                    <td>{{ avis.note }}</td>
+                    <td>{{ avis.response || 'Non répondu' }}</td>
+                    <td>
+                      <div class="d-flex gap-2 align-items-center">
+                        <button
+                          class="btn btn-primary btn-sm"
+                          (click)="openResponseModal(avis)"
+                          [disabled]="avis.response && avis.response.trim().length > 0"
+                          [title]="avis.response ? 'Déjà répondu' : 'Répondre à cet avis'">
+                          Répondre
+                        </button>
+                        <button
+                          type="button"
+                          (click)="confirmDelete(avis._id)"
+                          class="btn btn-delete rounded-pill"
+                          title="Supprimer cet avis">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <p>&copy; Copyright 2025 Maison Des Savoirs. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <!-- ✅ Backdrop personnalisé -->
+  <div class="custom-backdrop" *ngIf="selectedAvis"></div>
+
+  <!-- ✅ Modal pour répondre -->
+  <div
+    class="modal show"
+    id="responseModal"
+    tabindex="-1"
+    role="dialog"
+    style="display: none;"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Répondre à l'avis</h5>
+          <button type="button" class="close" (click)="closeModal()">
+            &times;
+          </button>
+        </div>
+        <div class="modal-body">
+          <textarea
+            class="form-control"
+            [(ngModel)]="responseText"
+            rows="4"
+            placeholder="Écrivez votre réponse ici...">
+          </textarea>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-secondary" (click)="closeModal()">Annuler</button>
+          <button class="btn btn-primary" (click)="submitResponse()">Envoyer</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

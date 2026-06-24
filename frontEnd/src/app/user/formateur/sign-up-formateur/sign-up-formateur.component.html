@@ -1,0 +1,64 @@
+<div class="signup-container">
+  <form class="signup-form" (ngSubmit)="onSubmit()">
+    <div class="logo">
+      <img src="../../../assets/user-style/img/maison.jpg" alt="Logo" class="logo-img">
+    </div>
+
+    <h2>Inscription Formateur</h2>
+
+    <div class="form-grid">
+      <div class="input-group">
+        <label for="name">Nom</label>
+        <input type="text" name="name" placeholder="Entrez votre nom" [(ngModel)]="name" required>
+      </div>
+
+      <div class="input-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" placeholder="Entrez votre email" [(ngModel)]="email" required>
+      </div>
+
+      <div class="input-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" name="password" placeholder="Créez un mot de passe" [(ngModel)]="password" required>
+      </div>
+
+      <div class="input-group">
+        <label for="telephone">Téléphone</label>
+        <input type="number" name="telephone" placeholder="Entrez votre téléphone" [(ngModel)]="telephone" required>
+      </div>
+
+      <div class="input-group">
+        <label for="adresse">Adresse</label>
+        <input type="text" name="adresse" placeholder="Entrez votre adresse" [(ngModel)]="adresse" required>
+      </div>
+
+      <div class="input-group">
+        <label for="specialite">Spécialité</label>
+        <select name="specialite" [(ngModel)]="specialite" required>
+          <option value="" disabled>-- Sélectionnez une spécialité --</option>
+          <option value="Développement web">Développement web</option>
+          <option value="Développement Mobile">Développement Mobile</option>
+          <option value="Intelligence Artificielle et Automatisation">Intelligence Artificielle et Automatisation</option>
+          <option value="Administration et Sécurité des Réseaux">Administration et Sécurité des Réseaux</option>
+          <option value="Bases de données avancées et Big Data">Bases de données avancées et Big Data</option>
+          <option value="Autres">Autres</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="image-upload-container">
+      <div class="image-upload">
+        <label for="cv">CV</label>
+        <input name="cv" type="file" (change)="onCvChange($event)" required>
+      </div>
+
+      <div class="image-upload">
+        <label for="image">Image de profil</label>
+        <input name="image" type="file" (change)="onImageChange($event)" required>
+      </div>
+    </div>
+
+    <button type="submit" class="signup-btn">S'inscrire</button>
+    <p class="login-link">Déjà un compte ? <a href="/signInUser">Connectez-vous</a></p>
+  </form>
+</div>

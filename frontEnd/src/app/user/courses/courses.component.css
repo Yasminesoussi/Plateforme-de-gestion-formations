@@ -1,0 +1,116 @@
+
+/* ============= FORMATION CARDS ============= */
+.card {
+    border: none;
+    border-radius: 20px !important;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    overflow: hidden;
+    background: #f5f3f0; /* blanc très léger */
+    transform: translateY(-70px);
+  }
+  
+  .card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 25px rgba(0, 0, 0, 0.12);
+  }
+  
+  .card-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-top: 0.75rem;
+    color: #2b2b45;
+  }
+  
+
+  .about-title {
+    font-size: 2.5rem;
+    font-weight: normal;
+    font-family: 'Georgia', serif;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #6D4C41; 
+  }
+  .card .btn {
+    border-radius: 25px;
+    padding: 10px 24px;
+  }
+  
+  /* Bouton En savoir plus - Plus petit et arrondi */
+  .card .btn-primary {
+    background-color: #347a7a;
+    border: none;
+    font-weight: 500;
+    font-size: 0.85rem; /* Réduit la taille du bouton */
+    padding: 6px 12px; /* Réduit l'espace autour du texte */
+    border-radius: 12px; /* Bords arrondis */
+    margin-right: 10px; /* Espacement à droite pour séparer les boutons */
+    transition: all 0.3s ease;
+  }
+  
+  .card .btn-primary:hover {
+    background-color: #0097a7;
+  }
+  
+  /* Bouton "J'aime" - Espacement et style */
+  .card .btn {
+    margin-top: 10px; /* Espacement entre les boutons */
+    margin-left: 5px; /* Espacement entre "En savoir plus" et "J'aime" */
+  }
+  
+  /* ============= LIKE BUTTON ============= */
+  .btn-light,
+  .btn-danger {
+    background-color: #fff;
+    color: #00bcd4;
+    border: 1px solid #347a7a;
+    border-radius: 20px;
+    padding: 6px 16px;
+    
+    transition: 0.3s ease;
+    font-size: 0.85rem;
+  }
+  
+  .btn-danger {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+  }
+  
+  .btn-light:hover {
+    background-color: #347a7a;
+    color: white;
+  }
+  
+  .count {
+    margin-left: 6px;
+    font-weight: 600;
+  }
+
+  .card {
+    border-radius: 16px !important;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .card-title {
+    font-size: 1.1rem;
+    color: #343a40;
+  }
+  
+  .card .btn {
+    margin-top: 8px;
+  }
+  
+  .card img {
+    border-radius: 12px;
+  }
+  
+  .btn-sm {
+    padding: 6px 14px;
+    font-size: 0.8rem;
+  }
+  

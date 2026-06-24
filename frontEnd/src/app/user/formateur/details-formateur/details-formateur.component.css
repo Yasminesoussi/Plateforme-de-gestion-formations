@@ -1,0 +1,224 @@
+/* Style global */
+body {
+  background-color: #f8f8f8;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Titre principal */
+.about-title {
+  font-size: 2rem;
+  font-family: 'Georgia', serif;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #6D4C41;
+}
+
+/* Titres avec puce à gauche */
+.left-align {
+  text-align: left;
+  padding-left: 30px;
+}
+
+.section-title .dot,
+.table-subtitle .dot {
+  color: #6D4C41;
+  font-size: 1.5rem;
+  margin-right: 8px;
+}
+
+.table-subtitle {
+  font-size: 1.5rem;
+  font-family: 'Georgia', serif;
+  color: #6D4C41;
+  margin-bottom: 5px;
+  margin-top: 10px;
+}
+
+/* Formations affectées */
+.formateur-formations {
+  max-width: 900px;
+  margin: 20px auto 40px;
+  padding: 30px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.formateur-formations ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.formateur-formations li {
+  background-color: #f9f4e8;
+  color: #5a4a3b;
+  padding: 10px 20px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: 500;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formateur-formations li:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+/* Message si liste vide */
+.formateur-formations-empty {
+  max-width: 900px;
+  margin: 20px auto;
+  text-align: center;
+  padding: 20px;
+  color: #5a4a3b;
+  font-size: 1rem;
+  background-color: #fffaf2;
+  border: 1px solid #e0d8c8;
+  border-radius: 10px;
+  font-style: italic;
+}
+
+/* Tableau des sessions */
+.table-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 30vh;
+  padding: 20px 0;
+}
+
+.table-container {
+  width: 100%;
+  max-width: 900px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.styled-table thead tr {
+  background-color: #f1e1c6;
+  color: #5a4a3b;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  text-align: left;
+}
+
+.styled-table td,
+.styled-table th {
+  padding: 12px;
+  text-align: left;
+  color: #5a4a3b;
+  font-size: 1rem;
+  vertical-align: middle;
+  border-bottom: 1px solid #ddd;
+}
+
+.styled-table tbody tr:nth-child(odd) {
+  background-color: #f9f4e8;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #faf0d7;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #e9e2b3;
+  cursor: pointer;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .styled-table {
+    font-size: 0.9rem;
+  }
+
+  .table-container {
+    padding: 20px;
+  }
+
+  .formateur-formations ul {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .formateur-formations li {
+    width: 100%;
+    text-align: center;
+  }
+
+  .formateur-formations h2 {
+    font-size: 1.5rem;
+  }
+}
+
+
+.section-title {
+  font-size: 1.5rem;
+  font-family: 'Georgia', serif;
+  color: #6D4C41;
+  margin: 40px auto 60px;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+}
+
+.left-align {
+  padding-left: 30px;
+  font-size: 1.5rem;
+  font-family: 'Georgia', serif;
+  color: #6D4C41;
+  margin: 40px auto 0px;
+  max-width: 900px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  
+ 
+}
+
+.dot {
+  font-size: 1.5rem;
+  color: #6D4C41;
+}
+
+
+/* Supprime toute bordure ou effet visuel parasite */
+.section-title,
+.section-title::before,
+.section-title::after {
+  border: none !important;
+  background: none !important;
+  box-shadow: none !important;
+  content: none !important;
+  display: inline !important;
+}
+
+/* Supprime les puces à gauche si c’est une liste */
+ul, li {
+  list-style: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+li::marker {
+  content: none;
+}

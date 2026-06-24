@@ -1,0 +1,286 @@
+
+
+<app-header-user></app-header-user>
+
+
+
+<!-- Section Start -->
+
+<div class="container mb-5">
+  <div class="row align-items-center">
+ <!-- Texte fixe à gauche -->
+<div class="col-lg-7 hero-content">
+  <h3 class="hero-title">
+    Votre centre de formation en informatique
+  </h3>
+  <p class="hero-subtitle">
+    Alliez présentiel et numérique pour apprendre les technologies d’aujourd’hui et de demain
+  </p>
+  <a [routerLink]="'/about'" class="btn btn-primary-custom me-3">En savoir plus</a>
+  <a [routerLink]="'/contact'" class="btn btn-outline-custom">Nous rejoindre</a>
+</div>
+
+
+  <!-- Carousel d'images à droite -->
+<!-- Carousel d'images à droite -->
+<div class="col-lg-5 d-flex justify-content-center">
+  <div style="height:700px; width: 619px; overflow: hidden;">
+    <owl-carousel-o [options]="customOptions">
+      <ng-template carouselSlide>
+        <img
+          src="../../../assets/user-style/img/form.jpg"
+          alt="Image 1"
+          class="carousel-img"
+        >
+      </ng-template>
+      <ng-template carouselSlide>
+        <img
+          src="../../../assets/user-style/img/plat.jpg"
+          alt="Image 2"
+          class="carousel-img"
+        >
+      </ng-template>
+
+      <ng-template carouselSlide>
+        <img
+          src="../../../assets/user-style/img/pexels.jpg"
+          alt="Image 3"
+          class="carousel-img"
+        >
+      </ng-template>
+    </owl-carousel-o>
+  </div>
+</div>
+
+
+  </div>
+</div>
+
+
+<!-- Section End -->
+
+<!-- Formations Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+    <div class="section-title-wrapper wow fadeInUp" data-wow-delay="0.1s">
+      <p class="subtitle">Trouvez la formation idéale</p>
+      <h1 class="main-heading">Nos Formations</h1>
+      <div class="line-divider"></div>
+    </div>
+    <div class="row">
+      <!-- Colonne de recherche (gauche) -->
+<div class="col-md-4">
+  <div class="search-section p-3 bg-light rounded">
+    <h1>Recherche</h1>
+
+    <form (ngSubmit)="onSearch()">
+      <!-- Champ texte principal -->
+      <div class="mb-3">
+        <label class="form-label">Name:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="query"
+          placeholder="Rechercher..."
+          [(ngModel)]="searchQuery"
+        />
+      </div>
+
+      <!-- Champs prix min et max -->
+      <div class="mb-3">
+        <label class="form-label">Prix:</label>
+        <div class="row g-2">
+          <div class="col">
+            <input
+              type="number"
+              class="form-control"
+              name="minPrice"
+              placeholder="Min"
+              [(ngModel)]="minPrice"
+            />
+          </div>
+          <div class="col">
+            <input
+              type="number"
+              class="form-control"
+              name="maxPrice"
+              placeholder="Max"
+              [(ngModel)]="maxPrice"
+            />
+          </div>
+        </div>
+      </div>
+
+
+
+      <!-- Filtrage par niveau -->
+      <div class="mb-3">
+        <label class="form-label">Niveau :</label>
+        
+        <div class="form-check"   *ngFor="let level of levels" >
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="level-{{level.name}}"
+            [(ngModel)]="level.checked"
+            [ngModelOptions]="{standalone: true}"
+          />&nbsp;&nbsp;
+          <label class="form-check-label" for="level-{{level.name}}">{{level.name}} ({{level.count}})</label>
+        </div>
+        
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Catégorie :</label>
+        
+        <div *ngFor="let cat of categorys" class="form-check">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            id="cat-{{cat._id}}"
+          [(ngModel)]="cat.checked"
+          [ngModelOptions]="{standalone: true}"
+          
+          />&nbsp;&nbsp;
+          <label class="form-check-label" for="cat-{{cat._id}}">{{cat.name}} ({{cat.count}}) </label>
+        </div>
+        
+      </div>
+
+      <!-- Bouton de recherche -->
+      <button type="submit" class="btn btn-primary w-100">
+        Rechercher
+      </button>
+    </form>
+  </div>
+</div>
+
+
+      
+    <!-- Colonne droite : Formations -->
+<div class="col-lg-8">
+  <div id="formationCarousel" >
+    <div >
+      <!-- Groupe 1 -->
+     <!-- Groupe 1 -->
+<div>
+  <div class="row g-4">
+    <div class="col-lg-6 col-md-6" *ngFor="let for of formations">
+      <div class="card h-100 border-0 shadow-lg text-center p-4">
+        <div class="card-body">
+
+          <!-- Image de la formation -->
+          <img 
+  [src]="for.image?.path ? 'http://localhost:3000/' + for.image.path : 'assets/default-formation.jpg'"
+  class="img-fluid mb-3"
+  style="max-height: 200px; object-fit: cover; border-radius: 10px;"
+  alt="Formation image"
+/>
+
+
+          <h5 class="card-title fw-bold">{{for.name}}</h5>
+
+          <p class="text-muted mb-2" *ngIf="for.formateur">
+            {{for.formateur.name}}
+          </p>
+
+          <div class="mb-3">
+            <!-- Ajouter une icône de like -->
+          </div>
+
+          <h5 class="text-primary mb-3">{{for.prix | currency:'TND':'symbol'}}</h5>
+
+          <a routerLink="/DetailsFormation/{{for._id}}" class="btn btn-primary">
+            En savoir plus
+          </a>
+
+          <!-- Bouton visible uniquement si connecté -->
+          <button 
+            *ngIf="user"
+            class="btn"
+            [ngClass]="isLiked(for._id) ? 'btn-danger' : 'btn-light'" 
+            (click)="isLiked(for._id) ? unlikeTraining(for._id) : likeTraining(for._id)">
+            <i class="fas fa-thumbs-up"></i>
+            {{ isLiked(for._id) ? 'Je n\'aime plus' : 'J\'aime' }}
+            <span class="count">({{ for.likesCount || 0 }})</span>
+          </button>
+
+          <!-- Bouton non cliquable si visiteur -->
+          <button 
+            *ngIf="!user"
+            class="btn btn-light"
+            disabled
+            style="pointer-events: none; opacity: 0.7; cursor: default;">
+            <i class="fas fa-thumbs-up"></i>
+            {{ for.likesCount || 0 }} j’aime
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </div>
+    
+    
+  </div>
+</div>
+
+
+
+
+  
+    </div>
+  </div>
+</div>
+<!-- Formations End -->
+
+<!-- Categories Start -->
+<div class="container-xxl py-5">
+  <div class="container">
+
+
+    <div class="section-title-wrapper wow fadeInUp" data-wow-delay="0.1s">
+      <p class="subtitle">Parcourir par</p>
+      <h1 class="main-heading">Nos Catégories</h1>
+      <div class="line-divider"></div>
+    </div>
+    
+    
+    
+
+
+    <div class="category-grid">
+      <div
+        class="category-card wow fadeInUp"
+        data-wow-delay="0.1s"
+        *ngFor="let cat of categorys"
+      >
+        <div class="icon-wrapper">
+          <i class="fa fa-3x fa-graduation-cap mb-4"></i>
+        </div>
+        <h5 class="mb-3">{{ cat.name }}</h5>
+        <p>{{ cat.description }}</p>
+        <a [routerLink]="'/FormationByCategory/' + cat._id" class="explore-btn">Explorer</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Categories End -->
+
+
+<app-avis></app-avis>
+
+
+
+
+
+
+<app-chatbot></app-chatbot>
+
+
+<app-footer-user></app-footer-user>
+
+
+

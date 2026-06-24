@@ -1,0 +1,33 @@
+.custom-sidebar {
+    background-color: #f5f5dc; /* Beige clair */
+    color: #5a5a5a; /* Gris foncé pour le texte */
+    padding: 15px;
+    height: 100vh;
+    width: 250px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.custom-sidebar a {
+    color: #5a5a5a; /* Gris foncé pour les liens */
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background 0.3s, color 0.3s;
+}
+
+.custom-sidebar a:hover {
+    background-color: #e0d5b8; /* Un beige plus foncé au survol */
+    color: #333; /* Texte plus foncé */
+}
+
+.custom-sidebar .nav-item.active {
+    background-color: #e0d5b8; /* Beige légèrement plus foncé pour l'élément actif */
+    border-radius: 5px;
+}
+
+.custom-sidebar i {
+    color: #8b6f47; /* Marron doux pour les icônes */
+    font-size: 1rem; /* Taille des icônes */
+    margin-right: 8px; /* Espacement entre l'icône et le texte */
+}

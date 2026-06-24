@@ -1,0 +1,294 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header></app-header>
+      <!-- End of Topbar -->
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Categories</h1>
+          
+          <a href="#" class="btn btn-sm btn-soft-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="fas fa-plus fa-sm text-white-50"></i> Ajouter Categorie
+          </a>
+          
+        
+        </div>
+        <!--Data Table-->
+        <!-- DataTales Example -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">
+            </h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table
+                class="table table-bordered"
+                id="dataTable"
+                width="100%"
+                cellspacing="0"
+              >
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+               
+                <tbody *ngFor=" let cat of categories ; let i=index ">
+                  <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{cat.name}}</td>
+                    <td>{{cat.description}}</td>
+                    <td>
+                     <!-- Bouton Modifier avec une icône -->
+<button
+type="button"
+class="btn btn-edit rounded-pill"
+(click)="getByIdCategory(cat._id)"
+data-bs-toggle="modal"
+data-bs-target="#editModal"
+>
+<i class="fas fa-pencil-alt"></i>
+</button>
+
+                      
+                      
+                    
+                      <!-- Delete Button -->
+                      <button
+                        type="button"
+                        (click)="confirmDelete(cat._id)"
+                        class="btn btn-delete rounded-pill"
+                      >
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+                    </td>
+                    
+
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer >
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <p>&copy; Copyright 2025 Maison Des Savoirs. All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+  <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Logout Modal-->
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+        <button
+          class="close"
+          type="button"
+          data-dismiss="modal"
+          aria-label="Close"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Select "Logout" below if you are ready to end your current session.
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">
+          Cancel
+        </button>
+        <a class="btn btn-primary" href="login.html">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Modal d'ajout-->
+
+<form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Category</h1>
+          <button
+            type="button"
+            class="close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Name:</label>
+            <input
+              type="text"
+              class="form-control"
+              name="name"
+              formControlName="name"
+              placeholder="Enter category name"
+            />
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="categoryForm.controls['name'].errors && categoryForm.controls['name'].touched"
+            >
+              <small *ngIf="categoryForm.controls['name'].errors['required']"
+                >Category name is required.</small
+              >
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description:</label>
+            <textarea
+              class="form-control"
+              name="description"
+              formControlName="description"
+              placeholder="Enter category description"
+            ></textarea>
+            <div
+              *ngIf="categoryForm.controls['description'].errors && categoryForm.controls['description'].touched"
+            >
+              <small
+                *ngIf="categoryForm.controls['description'].errors['required']"
+                >Category description is required.</small
+              >
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Close
+          </button>
+          <button
+            type="submit"
+            [disabled]="!categoryForm.valid"
+            class="btn btn-primary"
+          >
+            Add
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+
+
+<!-- Modal de modification -->
+<form [formGroup]="categoryForm" (ngSubmit)="updateCategory()">
+  <div
+    class="modal fade"
+    id="editModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">
+            Modifier Catégorie
+          </h1>
+          <button
+            type="button"
+            class="close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Stocke l'ID de la catégorie -->
+          <input type="hidden" formControlName="_id" />
+
+          <div class="mb-3">
+            <label for="name" class="col-form-label">Nom:</label>
+            <input type="text" class="form-control" formControlName="name" />
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched"
+            >
+              <small *ngIf="categoryForm.get('name')?.errors?.['required']">
+                Le nom de la catégorie est requis.
+              </small>
+            </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="description" class="col-form-label">Description:</label>
+            <textarea class="form-control" formControlName="description"></textarea>
+            <div
+              class="alert alert-danger"
+              role="alert"
+              *ngIf="categoryForm.get('description')?.invalid && categoryForm.get('description')?.touched"
+            >
+              <small *ngIf="categoryForm.get('description')?.errors?.['required']">
+                La description de la catégorie est requise.
+              </small>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+            Fermer
+          </button>
+          <button type="submit" class="btn btn-primary">
+            Modifier
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

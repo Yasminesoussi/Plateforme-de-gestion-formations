@@ -1,0 +1,172 @@
+<!-- Page Wrapper -->
+<div id="wrapper">
+  <app-side-bar></app-side-bar>
+
+  <!-- Content Wrapper -->
+  <div id="content-wrapper" class="d-flex flex-column">
+    <!-- Main Content -->
+    <div id="content">
+      <app-header></app-header>
+
+      <!-- Begin Page Content -->
+      <div class="container-fluid">
+        <!-- Page Heading -->
+        <div class="d-sm-flex align-items-center justify-content-between mb-4">
+          <h1 class="h3 mb-0 text-gray-800">Sessions Formations</h1>
+        </div>
+
+        <!-- Data Table -->
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Liste des sessions</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th>Formation</th>
+                    <th>Formateur</th>
+                    <th>Apprenant</th>
+                    <th>Status</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                    <th>Salle</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let session of sessions; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ session.formation?.name || 'Non spécifié' }}</td>
+                    <td>{{ session.formateur?.name }}</td>
+
+
+    
+
+
+
+                    <td>
+                      <span *ngFor="let apprenant of session.apprenants" class="apprenant-badge">
+                        {{ apprenant?.name }}
+                      </span>
+                    </td>
+                    
+                    <td>{{ session.status }}</td>
+
+                    <td>{{ formatDate(session.startDate) }}</td>
+                    <td>{{ formatDate(session.endDate) }}</td>
+                    <td>{{ session.salle?.nom || 'Non affectée' }}</td> 
+                    <td  class="d-flex align-items-center">
+
+                      <!-- Bouton Supprimer -->
+                      <button type="button" (click)="confirmDelete(session._id)" class="btn btn-delete rounded-pill">
+                        <i class="fas fa-trash-alt"></i>
+                      </button>
+
+                      <button
+                      type="button"
+                      class="btn d-flex align-items-center px-3 mx-1"
+                      style="background-color: #EADBC8; color: #5A4636; border: none; border-radius: 20px;"
+                      (click)="ouvrirModalAffecter(session)"
+                      [disabled]="session.status === 'finished'"
+                      data-bs-toggle="modal"
+                      data-bs-target="#modalAffecterSalle"
+                      title="Affecter une salle"
+                    >
+                      <i class="fas fa-door-open me-2"></i>
+                      Affecter Salle
+                    </button>
+                   
+                    </td>
+
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.container-fluid -->
+    </div>
+    <!-- End of Main Content -->
+
+    <!-- Footer -->
+    <footer>
+      <div class="container my-auto">
+        <div class="copyright text-center my-auto">
+          <p>&copy; 2025 Maison Des Savoirs. Tous droits réservés.</p>
+        </div>
+      </div>
+    </footer>
+    <!-- End of Footer -->
+  </div>
+  <!-- End of Content Wrapper -->
+</div>
+<!-- End of Page Wrapper -->
+
+<!-- Modal Affecter Salle -->
+<div
+  class="modal fade"
+  id="modalAffecterSalle"
+  tabindex="-1"
+  aria-labelledby="modalAffecterSalleLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalAffecterSalleLabel">Affecter une salle</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <label for="selectSalle">Sélectionnez une salle :</label>
+        <select id="selectSalle" class="form-select" [(ngModel)]="salleSelectionnee">
+          <option value="" disabled>-- Choisir une salle --</option>
+          <option *ngFor="let salle of salles" [value]="salle._id">
+            {{ salle.nom }}
+          </option>
+        </select>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="affecterSalle()"
+          data-bs-dismiss="modal"
+        >
+          Confirmer
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Logout Modal -->
+<div
+  class="modal fade"
+  id="logoutModal"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="exampleModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Prêt à partir ?</h5>
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">×</span>
+        </button>
+      </div>
+      <div class="modal-body">Sélectionnez "Déconnexion" ci-dessous pour terminer votre session.</div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
+        <a class="btn btn-primary" href="login.html">Déconnexion</a>
+      </div>
+    </div>
+  </div>
+</div>
